@@ -96,7 +96,7 @@ extension Tests.`Edge Case` {
         unsafe values.withUnsafeBufferPointer { buffer in
             let span = unsafe Swift.Span(
                 _unsafeStart: buffer.baseAddress!,
-                count: Cardinal(0)
+                count: .zero
             )
             // Extract to plain values first: `#expect`'s property-access path
             // requires its receiver to be Escapable, and Swift.Span is not.
@@ -113,7 +113,7 @@ extension Tests.`Edge Case` {
         unsafe values.withUnsafeMutableBufferPointer { buffer in
             let span = unsafe Swift.MutableSpan(
                 _unsafeStart: buffer.baseAddress!,
-                count: Cardinal(0)
+                count: .zero
             )
             // Extract to plain values first: `#expect`'s property-access path
             // requires its receiver to be Escapable/Copyable, and
