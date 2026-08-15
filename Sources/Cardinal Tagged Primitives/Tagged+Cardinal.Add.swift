@@ -65,7 +65,9 @@ extension Property {
 
     /// Callable syntax for exact addition.
     @inlinable
-    public func callAsFunction<T: ~Copyable & ~Escapable>(_ other: Base) throws(Cardinal.Error) -> Base
+    public func callAsFunction<T: ~Copyable & ~Escapable>(
+        _ other: Base
+    ) throws(Cardinal.Error) -> Base
     where
         Tag == Tagged<T, Cardinal>.Add,
         Base == Tagged<T, Cardinal>
