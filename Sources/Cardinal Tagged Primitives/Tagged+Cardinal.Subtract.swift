@@ -55,12 +55,16 @@ extension Property {
         Tag == Tagged<T, Cardinal>.Subtract,
         Base == Tagged<T, Cardinal>
     {
-        try base.map { cardinal throws(Cardinal.Error) in try cardinal.subtract.exact(other.underlying) }
+        try base.map { cardinal throws(Cardinal.Error) in
+            try cardinal.subtract.exact(other.underlying)
+        }
     }
 
     /// Callable syntax for exact subtraction.
     @inlinable
-    public func callAsFunction<T: ~Copyable & ~Escapable>(_ other: Base) throws(Cardinal.Error) -> Base
+    public func callAsFunction<T: ~Copyable & ~Escapable>(
+        _ other: Base
+    ) throws(Cardinal.Error) -> Base
     where
         Tag == Tagged<T, Cardinal>.Subtract,
         Base == Tagged<T, Cardinal>

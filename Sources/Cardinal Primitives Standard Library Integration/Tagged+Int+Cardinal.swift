@@ -31,7 +31,8 @@ extension Tagged where Underlying == Cardinal, Tag: ~Copyable & ~Escapable {
 extension Int {
     /// Creates an integer from a tagged cardinal, throwing if it exceeds `Int.max`.
     @inlinable
-    public init<Tag: ~Copyable & ~Escapable>(_ count: Tagged<Tag, Cardinal>) throws(Cardinal.Error) {
+    public init<Tag: ~Copyable & ~Escapable>(_ count: Tagged<Tag, Cardinal>) throws(Cardinal.Error)
+    {
         self = try Int(count.underlying)
     }
 
