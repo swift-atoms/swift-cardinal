@@ -33,7 +33,7 @@ extension Cardinal.Test.Unit {
 
     @Test
     func `construction succeeds for non-negative`() throws(Cardinal.Error) {
-        let result = try Cardinal(42)
+        let result = Cardinal(42)
         #expect(result == 42)
     }
 

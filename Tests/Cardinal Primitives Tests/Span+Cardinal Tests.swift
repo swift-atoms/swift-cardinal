@@ -59,7 +59,7 @@ extension Tests.Unit {
     @Test
     func `Span typed-Cardinal init reads the underlying buffer`() {
         let values: [Int] = [10, 20, 30]
-        unsafe values.withUnsafeBufferPointer { buffer in
+        values.withUnsafeBufferPointer { buffer in
             let span = unsafe Swift.Span(
                 _unsafeStart: buffer.baseAddress!,
                 count: Cardinal(3)
@@ -74,7 +74,7 @@ extension Tests.Unit {
     @Test
     func `MutableSpan typed-Cardinal init reads and mutates the underlying buffer`() {
         var values: [Int] = [1, 2, 3]
-        unsafe values.withUnsafeMutableBufferPointer { buffer in
+        values.withUnsafeMutableBufferPointer { buffer in
             var span = unsafe Swift.MutableSpan(
                 _unsafeStart: buffer.baseAddress!,
                 count: Cardinal(3)
@@ -94,7 +94,7 @@ extension Tests.`Edge Case` {
     @Test
     func `Span typed-Cardinal init with zero count is empty`() {
         let values: [Int] = [7]
-        unsafe values.withUnsafeBufferPointer { buffer in
+        values.withUnsafeBufferPointer { buffer in
             let span = unsafe Swift.Span(
                 _unsafeStart: buffer.baseAddress!,
                 count: .zero
@@ -111,7 +111,7 @@ extension Tests.`Edge Case` {
     @Test
     func `MutableSpan typed-Cardinal init with zero count is empty`() {
         var values: [Int] = [7]
-        unsafe values.withUnsafeMutableBufferPointer { buffer in
+        values.withUnsafeMutableBufferPointer { buffer in
             let span = unsafe Swift.MutableSpan(
                 _unsafeStart: buffer.baseAddress!,
                 count: .zero

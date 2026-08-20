@@ -30,7 +30,7 @@ extension Cardinal.Tagged.Unit {
 
     @Test
     func `construction from int success`() throws(Cardinal.Error) {
-        let users = try Tagged_Primitives.Tagged<UserCount, Cardinal>(42)
+        let users = Tagged_Primitives.Tagged<UserCount, Cardinal>(42)
         #expect(users.underlying == Cardinal(42))
     }
 

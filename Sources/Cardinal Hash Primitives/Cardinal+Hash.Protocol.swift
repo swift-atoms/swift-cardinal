@@ -1,12 +1,8 @@
 // Cardinal+Hash.Protocol.swift
 // Conformance of Cardinal to Hash.Protocol — unconditional.
 //
-// On Swift <6.4, `Hash.Protocol` is the institute fork supporting `borrowing`
-// parameters for `~Copyable` conformers. On Swift 6.4+, it is a typealias
-// to `Swift.Hashable` per SE-0499 — this same extension then satisfies the
-// stdlib `Hashable` conformance directly. The stdlib `extension Cardinal:
-// Hashable {}` in `Cardinal.swift` is guarded `#if swift(<6.4)` to avoid
-// duplicate-conformance.
+// `Hash.Protocol` refines `Swift.Hashable`, so this conformance also supplies
+// the standard-library conformance.
 //
 // The explicit `hash(into:)` is required (rather than relying on synthesis)
 // because Hashable synthesis only fires when the conformance is declared in
@@ -23,7 +19,3 @@ extension Cardinal: Hash.`Protocol` {
         hasher.combine(rawValue)
     }
 }
-
-#if swift(<6.4)
-    extension Cardinal: Hashable {}
-#endif
