@@ -1,41 +1,15 @@
-// ===----------------------------------------------------------------------===//
-//
-// This source file is part of the swift-primitives open source project
-//
-// Copyright (c) 2024-2026 Coen ten Thije Boonkkamp and the swift-primitives project authors
-// Licensed under Apache License v2.0
-//
-// See LICENSE for license information
-//
-// ===----------------------------------------------------------------------===//
-
 public import Cardinal_Add_Primitives
 public import Cardinal_Primitive
 public import Property_Primitives
 public import Tagged_Primitives
 
-// MARK: - Tagged<Tag, Cardinal>.Add
-
 extension Tagged where Underlying == Cardinal, Tag: ~Copyable & ~Escapable {
-    /// Tag for addition operations on tagged cardinals.
+
     public enum Add {}
 }
 
-// MARK: - Tagged<Tag, Cardinal> Addition (Property-based)
-
 extension Tagged where Underlying == Cardinal, Tag: ~Copyable & ~Escapable {
-    /// Access to policy-aware addition operations.
-    ///
-    /// Use this accessor when you need control over overflow behavior:
-    /// - `.add.saturating(_:)` — clamps at `UInt.max`
-    /// - `.add.exact(_:)` — throws on overflow
-    ///
-    /// For trapping addition (Swift integer semantics), use the `+` operator.
-    ///
-    /// ```swift
-    /// let total = size.add.saturating(increment)
-    /// let exact = try size.add.exact(increment)
-    /// ```
+
     @inlinable
     public var add: Property<Add, Self> {
         Property(self)
@@ -43,7 +17,7 @@ extension Tagged where Underlying == Cardinal, Tag: ~Copyable & ~Escapable {
 }
 
 extension Property {
-    /// Saturating addition: returns `min(UInt.max, self + other)`.
+
     @inlinable
     public func saturating<T: ~Copyable & ~Escapable>(_ other: Base) -> Base
     where
@@ -53,7 +27,6 @@ extension Property {
         base.map { $0.add.saturating(other.underlying) }
     }
 
-    /// Exact addition: returns `self + other` or throws if overflow.
     @inlinable
     public func exact<T: ~Copyable & ~Escapable>(_ other: Base) throws(Cardinal.Error) -> Base
     where
@@ -63,7 +36,6 @@ extension Property {
         try base.map { cardinal throws(Cardinal.Error) in try cardinal.add.exact(other.underlying) }
     }
 
-    /// Callable syntax for exact addition.
     @inlinable
     public func callAsFunction<T: ~Copyable & ~Escapable>(
         _ other: Base

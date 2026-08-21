@@ -1,20 +1,6 @@
-// ===----------------------------------------------------------------------===//
-//
-// This source file is part of the swift-primitives open source project
-//
-// Copyright (c) 2024-2026 Coen ten Thije Boonkkamp and the swift-primitives project authors
-// Licensed under Apache License v2.0
-//
-// See LICENSE for license information
-//
-// ===----------------------------------------------------------------------===//
-
 public import Cardinal_Primitive
 public import Carrier_Primitives
 
-// MARK: - Cardinal Shift Operators
-
-/// Left shift a fixed-width integer by a cardinal amount.
 @inlinable
 public func << <RawValue: FixedWidthInteger>(
     lhs: RawValue,
@@ -25,7 +11,6 @@ public func << <RawValue: FixedWidthInteger>(
     return lhs << shift
 }
 
-/// Right shift a fixed-width integer by a cardinal amount.
 @inlinable
 public func >> <RawValue: FixedWidthInteger>(
     lhs: RawValue,
@@ -36,7 +21,6 @@ public func >> <RawValue: FixedWidthInteger>(
     return lhs >> shift
 }
 
-/// Left shift assignment by a cardinal amount.
 @inlinable
 public func <<= <RawValue: FixedWidthInteger>(
     lhs: inout RawValue,
@@ -45,7 +29,6 @@ public func <<= <RawValue: FixedWidthInteger>(
     lhs = lhs << rhs
 }
 
-/// Right shift assignment by a cardinal amount.
 @inlinable
 public func >>= <RawValue: FixedWidthInteger>(
     lhs: inout RawValue,

@@ -1,52 +1,28 @@
-// ===----------------------------------------------------------------------===//
-//
-// This source file is part of the swift-primitives open source project
-//
-// Copyright (c) 2024-2026 Coen ten Thije Boonkkamp and the swift-primitives project authors
-// Licensed under Apache License v2.0
-//
-// See LICENSE for license information
-//
-// ===----------------------------------------------------------------------===//
-
 public import Cardinal_Error_Primitives
 public import Cardinal_Primitive
 public import Tagged_Primitives
 
-// MARK: - Tagged<Tag, Cardinal> Int Construction (stdlib-bridging)
-
 extension Tagged where Underlying == Cardinal, Tag: ~Copyable & ~Escapable {
-    /// Creates a tagged cardinal from a signed integer.
-    ///
-    /// - Parameter int: The count value. Must be non-negative.
-    /// - Throws: `Cardinal.Error.negativeSource` if negative.
+
     @inlinable
     public init(_ int: Int) throws(Cardinal.Error) {
         self.init(try Cardinal(int))
     }
 }
 
-// MARK: - Int Conversions for Tagged<Tag, Cardinal>
-
 extension Int {
-    /// Creates an integer from a tagged cardinal, throwing if it exceeds `Int.max`.
+
     @inlinable
     public init<Tag: ~Copyable & ~Escapable>(_ count: Tagged<Tag, Cardinal>) throws(Cardinal.Error)
     {
         self = try Int(count.underlying)
     }
 
-    /// Creates an integer by reinterpreting the tagged cardinal's bit pattern.
-    ///
-    /// This is an unchecked conversion for low-level operations like pointer arithmetic.
     @inlinable
     public init<Tag: ~Copyable & ~Escapable>(bitPattern count: Tagged<Tag, Cardinal>) {
         self = Int(bitPattern: count.underlying)
     }
 
-    /// Creates an integer from a tagged cardinal, clamping to `Int.max` if too large.
-    ///
-    /// Use this for APIs like `Sequence.underestimatedCount` that return `Int`.
     @inlinable
     public init<Tag: ~Copyable & ~Escapable>(clamping count: Tagged<Tag, Cardinal>) {
         self = Int(clamping: count.underlying)

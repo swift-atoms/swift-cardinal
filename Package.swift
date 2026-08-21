@@ -11,13 +11,12 @@ let package = Package(
         .visionOS(.v27),
     ],
     products: [
-        // MARK: - Namespace
+
         .library(
             name: "Cardinal Primitive",
             targets: ["Cardinal Primitive"]
         ),
 
-        // MARK: - Sub-namespace targets
         .library(
             name: "Cardinal Error Primitives",
             targets: ["Cardinal Error Primitives"]
@@ -51,19 +50,16 @@ let package = Package(
             targets: ["Cardinal Tagged Primitives"]
         ),
 
-        // MARK: - StdLib Integration
         .library(
             name: "Cardinal Primitives Standard Library Integration",
             targets: ["Cardinal Primitives Standard Library Integration"]
         ),
 
-        // MARK: - Umbrella
         .library(
             name: "Cardinal Primitives",
             targets: ["Cardinal Primitives"]
         ),
 
-        // MARK: - Test Support
         .library(
             name: "Cardinal Primitives Test Support",
             targets: ["Cardinal Primitives Test Support"]
@@ -97,13 +93,11 @@ let package = Package(
     ],
     targets: [
 
-        // MARK: - Namespace
         .target(
             name: "Cardinal Primitive",
             dependencies: []
         ),
 
-        // MARK: - Sub-namespace targets (per [MOD-031])
         .target(
             name: "Cardinal Error Primitives",
             dependencies: [
@@ -167,7 +161,6 @@ let package = Package(
             ]
         ),
 
-        // MARK: - StdLib Integration
         .target(
             name: "Cardinal Primitives Standard Library Integration",
             dependencies: [
@@ -183,7 +176,6 @@ let package = Package(
             ]
         ),
 
-        // MARK: - Umbrella
         .target(
             name: "Cardinal Primitives",
             dependencies: [
@@ -201,7 +193,6 @@ let package = Package(
             ]
         ),
 
-        // MARK: - Test Support
         .target(
             name: "Cardinal Primitives Test Support",
             dependencies: [
@@ -214,7 +205,6 @@ let package = Package(
             path: "Tests/Support"
         ),
 
-        // MARK: - Tests
         .testTarget(
             name: "Cardinal Primitives Tests",
             dependencies: [
@@ -237,13 +227,6 @@ for target in package.targets where ![.system, .binary, .plugin, .macro].contain
         .enableUpcomingFeature("InferIsolatedConformances"),
     ]
 
-    // Platforms whose Swift SDK can compile the `Synchronization` module.
-    // Android is excluded because the swift-android-sdk artifact bundle's
-    // `SwiftOverlayShims/LibcOverlayShims.h` includes `<semaphore.h>`, which
-    // Bionic libc does not ship as a standalone header (upstream gap in the
-    // community Android Swift SDK). Embedded targets lack Synchronization
-    // entirely. Source files that import Synchronization should guard with
-    // `#if SYNCHRONIZATION_AVAILABLE`.
     let package: [SwiftSetting] = [
         .define(
             "SYNCHRONIZATION_AVAILABLE",

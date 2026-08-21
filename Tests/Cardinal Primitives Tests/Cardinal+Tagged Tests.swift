@@ -16,11 +16,7 @@ extension Cardinal {
     }
 }
 
-// MARK: - Unit
-
 extension Cardinal.Tagged.Unit {
-
-    // MARK: Construction
 
     @Test
     func `construction from UInt`() {
@@ -33,8 +29,6 @@ extension Cardinal.Tagged.Unit {
         let users = Tagged_Primitives.Tagged<UserCount, Cardinal>(42)
         #expect(users.underlying == Cardinal(42))
     }
-
-    // MARK: Addition
 
     @Test
     func `add saturating`() {
@@ -58,8 +52,6 @@ extension Cardinal.Tagged.Unit {
         let result = try a.add(b)
         #expect(result.underlying == Cardinal(8))
     }
-
-    // MARK: Subtraction
 
     @Test
     func `subtract saturating`() {
@@ -85,20 +77,14 @@ extension Cardinal.Tagged.Unit {
         #expect(result.underlying == Cardinal(2))
     }
 
-    // MARK: Tag Discrimination
-
     @Test
     func `different tags are distinct types`() {
         let users = Tagged_Primitives.Tagged<UserCount, Cardinal>(10 as UInt)
         let inboxItems = Tagged_Primitives.Tagged<InboxCount, Cardinal>(10 as UInt)
         #expect(users.underlying == inboxItems.underlying)
-        // Compile-time guarantee: `users + inboxItems` does not type-check.
-        // Generic code can dispatch on `.Tag` to distinguish them at the
-        // type level without runtime overhead.
+
     }
 }
-
-// MARK: - Edge Case
 
 extension Cardinal.Tagged.`Edge Case` {
 
@@ -143,8 +129,6 @@ extension Cardinal.Tagged.`Edge Case` {
         }
     }
 }
-
-// MARK: - Integration
 
 extension Cardinal.Tagged.Integration {
 

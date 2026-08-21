@@ -13,11 +13,7 @@ extension Cardinal {
     }
 }
 
-// MARK: - Unit
-
 extension Cardinal.Test.Unit {
-
-    // MARK: Construction
 
     @Test
     func `construction from UInt`() {
@@ -37,8 +33,6 @@ extension Cardinal.Test.Unit {
         #expect(result == 42)
     }
 
-    // MARK: Constants
-
     @Test
     func `zero constant`() {
         #expect(Cardinal.zero == 0)
@@ -53,8 +47,6 @@ extension Cardinal.Test.Unit {
     func `max constant`() {
         #expect(Cardinal.max.rawValue == UInt.max)
     }
-
-    // MARK: Addition
 
     @Test
     func `addition operator`() {
@@ -76,8 +68,6 @@ extension Cardinal.Test.Unit {
         let result = try a.add.exact(b)
         #expect(result == 8)
     }
-
-    // MARK: Subtraction (Monus)
 
     @Test
     func `subtract saturating`() {
@@ -106,8 +96,6 @@ extension Cardinal.Test.Unit {
         #expect(result == 2)
     }
 
-    // MARK: Comparison
-
     @Test
     func comparison() {
         let a: Cardinal = 3
@@ -120,8 +108,6 @@ extension Cardinal.Test.Unit {
         #expect(a != b)
     }
 }
-
-// MARK: - Edge Case
 
 extension Cardinal.Test.`Edge Case` {
 
@@ -171,8 +157,6 @@ extension Cardinal.Test.`Edge Case` {
         }
     }
 }
-
-// MARK: - Integration
 
 extension Cardinal.Test.Integration {
 
