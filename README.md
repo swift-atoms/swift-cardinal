@@ -1,17 +1,17 @@
-# Cardinal Primitives
+# Cardinal
 
 ![Development Status](https://img.shields.io/badge/status-active--development-blue.svg)
 
 A typed cardinal-number primitive — `Cardinal`, a non-negative count, with policy-aware overflow / underflow handling and a phantom-tagged variant `Tagged<Tag, Cardinal>` for per-domain count types.
 
-`Cardinal` separates *count* from the two other things stdlib calls `Int`: **position** (see [`swift-ordinal-primitives`](https://github.com/swift-primitives/swift-ordinal-primitives)) and **signed offset** (see [`swift-affine-primitives`](https://github.com/swift-primitives/swift-affine-primitives)).
+`Cardinal` separates *count* from the two other things stdlib calls `Int`: **position** (see [`swift-ordinal`](https://github.com/swift-molecules/swift-ordinal)) and **signed offset** (see [`swift-affine`](https://github.com/swift-molecules/swift-affine)).
 
 ---
 
 ## Quick Start
 
 ```swift
-import Cardinal_Primitives
+import Cardinal
 
 // Bare Cardinal — a non-negative count
 let items: Cardinal = 5
@@ -38,7 +38,7 @@ Cardinal is backed by `UInt`, which makes non-negativity representational rather
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/swift-primitives/swift-cardinal-primitives.git", branch: "main")
+    .package(url: "https://github.com/swift-molecules/swift-cardinal.git", branch: "main")
 ]
 ```
 
@@ -46,7 +46,7 @@ dependencies: [
 .target(
     name: "App",
     dependencies: [
-        .product(name: "Cardinal Primitives", package: "swift-cardinal-primitives"),
+        .product(name: "Cardinal", package: "swift-cardinal"),
     ]
 )
 ```
@@ -61,14 +61,14 @@ Four library products covering the bare type, its standard-library integration, 
 
 | Product | Target | Purpose |
 |---------|--------|---------|
-| `Cardinal Primitives` | `Sources/Cardinal Primitives/` | Umbrella — re-exports Core and SLI; the default import for application code. Adds `Tagged<Tag, Cardinal>` arithmetic accessors (`.add`, `.subtract`) bridging the Property-based API to phantom-tagged counts. |
-| `Cardinal Primitives Core` | `Sources/Cardinal Primitives Core/` | The `Cardinal` type itself — backing `UInt` storage, trapping `+`, the `.add` / `.subtract` policy-aware accessors, and `Cardinal.Error`. |
-| `Cardinal Primitives Standard Library Integration` | `Sources/Cardinal Primitives Standard Library Integration/` | Conformances and integration overloads bridging Cardinal into the standard library: `ExpressibleByIntegerLiteral`, `Int(_:Cardinal)` conversions, `UnsafeBufferPointer` / `Span` / `MutableSpan` / `OutputSpan` initializers accepting `some Carrier.`Protocol`<Cardinal>` counts. |
-| `Cardinal Primitives Test Support` | `Tests/Support/` | Re-exports the umbrella + Tagged Test Support fixtures for downstream test consumers. |
+| `Cardinal` | `Sources/Cardinal/` | Umbrella — re-exports Core and SLI; the default import for application code. Adds `Tagged<Tag, Cardinal>` arithmetic accessors (`.add`, `.subtract`) bridging the Property-based API to phantom-tagged counts. |
+| `Cardinal Core` | `Sources/Cardinal Core/` | The `Cardinal` type itself — backing `UInt` storage, trapping `+`, the `.add` / `.subtract` policy-aware accessors, and `Cardinal.Error`. |
+| `Cardinal Standard Library Integration` | `Sources/Cardinal Standard Library Integration/` | Conformances and integration overloads bridging Cardinal into the standard library: `ExpressibleByIntegerLiteral`, `Int(_:Cardinal)` conversions, `UnsafeBufferPointer` / `Span` / `MutableSpan` / `OutputSpan` initializers accepting `some Carrier.`Protocol`<Cardinal>` counts. |
+| `Cardinal Test Support` | `Tests/Support/` | Re-exports the umbrella + Tagged Test Support fixtures for downstream test consumers. |
 
-Import the narrowest product you need: `Cardinal Primitives Core` for just the type, `Cardinal Primitives` (the umbrella) for the full surface including SLI bridges and Tagged-cardinal arithmetic.
+Import the narrowest product you need: `Cardinal Core` for just the type, `Cardinal` (the umbrella) for the full surface including SLI bridges and Tagged-cardinal arithmetic.
 
-The package depends on five primitives — `swift-tagged-primitives`, `swift-carrier-primitives`, `swift-property-primitives`, `swift-equation-primitives`, `swift-comparison-primitives`. See [Related Packages](#related-packages).
+The package depends on five molecules — `swift-tagged`, `swift-carrier`, `swift-property`, `swift-equation`, `swift-comparison`. See [Related Packages](#related-packages).
 
 Foundation-free.
 
@@ -88,18 +88,18 @@ Foundation-free.
 
 ## Related Packages
 
-Direct dependencies (all already-public Tier 0 primitives):
+Direct dependencies (all already-public Tier 0 molecules):
 
-- [swift-tagged-primitives](https://github.com/swift-primitives/swift-tagged-primitives) — provides `Tagged<Tag, Underlying>` for the phantom-tagged `Tagged<Tag, Cardinal>` surface.
-- [swift-carrier-primitives](https://github.com/swift-primitives/swift-carrier-primitives) — provides `Carrier.`Protocol`<Underlying>`, the unified super-protocol Cardinal conforms to (as a trivial self-carrier, `Underlying = Cardinal`).
-- [swift-property-primitives](https://github.com/swift-primitives/swift-property-primitives) — provides `Property<Tag, Base>`, the carrier underlying the `.add` / `.subtract` policy-aware accessors.
-- [swift-equation-primitives](https://github.com/swift-primitives/swift-equation-primitives) — provides `Equation.`Protocol``, the `Equatable`-shape conformance Cardinal exposes.
-- [swift-comparison-primitives](https://github.com/swift-primitives/swift-comparison-primitives) — provides `Comparison.`Protocol``, the `Comparable`-shape conformance Cardinal exposes.
+- [swift-tagged](https://github.com/swift-molecules/swift-tagged) — provides `Tagged<Tag, Underlying>` for the phantom-tagged `Tagged<Tag, Cardinal>` surface.
+- [swift-carrier](https://github.com/swift-molecules/swift-carrier) — provides `Carrier.`Protocol`<Underlying>`, the unified super-protocol Cardinal conforms to (as a trivial self-carrier, `Underlying = Cardinal`).
+- [swift-property](https://github.com/swift-molecules/swift-property) — provides `Property<Tag, Base>`, the carrier underlying the `.add` / `.subtract` policy-aware accessors.
+- [swift-equation](https://github.com/swift-molecules/swift-equation) — provides `Equation.`Protocol``, the `Equatable`-shape conformance Cardinal exposes.
+- [swift-comparison](https://github.com/swift-molecules/swift-comparison) — provides `Comparison.`Protocol``, the `Comparable`-shape conformance Cardinal exposes.
 
-Companion primitives covering the other two things stdlib calls `Int`:
+Companion molecules covering the other two things stdlib calls `Int`:
 
-- [swift-ordinal-primitives](https://github.com/swift-primitives/swift-ordinal-primitives) — `Ordinal`, a non-negative position in a 0-indexed sequence.
-- [swift-affine-primitives](https://github.com/swift-primitives/swift-affine-primitives) — `Affine.Discrete.Vector`, a signed offset between ordinal positions.
+- [swift-ordinal](https://github.com/swift-molecules/swift-ordinal) — `Ordinal`, a non-negative position in a 0-indexed sequence.
+- [swift-affine](https://github.com/swift-molecules/swift-affine) — `Affine.Discrete.Vector`, a signed offset between ordinal positions.
 
 ---
 

@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "swift-cardinal-primitives",
+    name: "swift-cardinal",
     platforms: [
         .macOS(.v27),
         .iOS(.v27),
@@ -18,76 +18,76 @@ let package = Package(
         ),
 
         .library(
-            name: "Cardinal Error Primitives",
-            targets: ["Cardinal Error Primitives"]
+            name: "Cardinal Error",
+            targets: ["Cardinal Error"]
         ),
         .library(
-            name: "Cardinal Add Primitives",
-            targets: ["Cardinal Add Primitives"]
+            name: "Cardinal Add",
+            targets: ["Cardinal Add"]
         ),
         .library(
-            name: "Cardinal Subtract Primitives",
-            targets: ["Cardinal Subtract Primitives"]
+            name: "Cardinal Subtract",
+            targets: ["Cardinal Subtract"]
         ),
         .library(
-            name: "Cardinal Carrier Primitives",
-            targets: ["Cardinal Carrier Primitives"]
+            name: "Cardinal Carrier",
+            targets: ["Cardinal Carrier"]
         ),
         .library(
-            name: "Cardinal Equation Primitives",
-            targets: ["Cardinal Equation Primitives"]
+            name: "Cardinal Equation",
+            targets: ["Cardinal Equation"]
         ),
         .library(
-            name: "Cardinal Hash Primitives",
-            targets: ["Cardinal Hash Primitives"]
+            name: "Cardinal Hash",
+            targets: ["Cardinal Hash"]
         ),
         .library(
-            name: "Cardinal Comparison Primitives",
-            targets: ["Cardinal Comparison Primitives"]
+            name: "Cardinal Comparison",
+            targets: ["Cardinal Comparison"]
         ),
         .library(
-            name: "Cardinal Tagged Primitives",
-            targets: ["Cardinal Tagged Primitives"]
-        ),
-
-        .library(
-            name: "Cardinal Primitives Standard Library Integration",
-            targets: ["Cardinal Primitives Standard Library Integration"]
+            name: "Cardinal Tagged",
+            targets: ["Cardinal Tagged"]
         ),
 
         .library(
-            name: "Cardinal Primitives",
-            targets: ["Cardinal Primitives"]
+            name: "Cardinal Standard Library Integration",
+            targets: ["Cardinal Standard Library Integration"]
         ),
 
         .library(
-            name: "Cardinal Primitives Test Support",
-            targets: ["Cardinal Primitives Test Support"]
+            name: "Cardinal",
+            targets: ["Cardinal"]
+        ),
+
+        .library(
+            name: "Cardinal Test Support",
+            targets: ["Cardinal Test Support"]
         ),
     ],
     dependencies: [
         .package(
-            url: "https://github.com/swift-primitives/swift-tagged-primitives.git",
+            url: "https://github.com/swift-molecules/swift-tagged.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-carrier-primitives.git",
+            url: "https://github.com/swift-molecules/swift-carrier.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-property-primitives.git",
+            url: "https://github.com/swift-molecules/swift-property.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-equation-primitives.git",
+            url: "https://github.com/swift-molecules/swift-equation.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-hash-primitives.git",
+            url: "https://github.com/swift-molecules/swift-hash.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-comparison-primitives.git",
+            url: "https://github.com/swift-molecules/swift-comparison.git",
             branch: "main"
         ),
     ],
@@ -99,117 +99,117 @@ let package = Package(
         ),
 
         .target(
-            name: "Cardinal Error Primitives",
+            name: "Cardinal Error",
             dependencies: [
                 "Cardinal Primitive"
             ]
         ),
         .target(
-            name: "Cardinal Add Primitives",
+            name: "Cardinal Add",
             dependencies: [
                 "Cardinal Primitive",
-                "Cardinal Error Primitives",
-                .product(name: "Property Primitives", package: "swift-property-primitives"),
+                "Cardinal Error",
+                .product(name: "Property", package: "swift-property"),
             ]
         ),
         .target(
-            name: "Cardinal Subtract Primitives",
+            name: "Cardinal Subtract",
             dependencies: [
                 "Cardinal Primitive",
-                "Cardinal Carrier Primitives",
-                "Cardinal Error Primitives",
-                .product(name: "Property Primitives", package: "swift-property-primitives"),
+                "Cardinal Carrier",
+                "Cardinal Error",
+                .product(name: "Property", package: "swift-property"),
             ]
         ),
         .target(
-            name: "Cardinal Carrier Primitives",
+            name: "Cardinal Carrier",
             dependencies: [
                 "Cardinal Primitive",
-                .product(name: "Carrier Primitives", package: "swift-carrier-primitives"),
+                .product(name: "Carrier", package: "swift-carrier"),
             ]
         ),
         .target(
-            name: "Cardinal Equation Primitives",
+            name: "Cardinal Equation",
             dependencies: [
                 "Cardinal Primitive",
-                .product(name: "Equation Primitives", package: "swift-equation-primitives"),
+                .product(name: "Equation", package: "swift-equation"),
             ]
         ),
         .target(
-            name: "Cardinal Hash Primitives",
+            name: "Cardinal Hash",
             dependencies: [
                 "Cardinal Primitive",
-                .product(name: "Hash Primitives", package: "swift-hash-primitives"),
+                .product(name: "Hash", package: "swift-hash"),
             ]
         ),
         .target(
-            name: "Cardinal Comparison Primitives",
+            name: "Cardinal Comparison",
             dependencies: [
                 "Cardinal Primitive",
-                .product(name: "Comparison Primitives", package: "swift-comparison-primitives"),
+                .product(name: "Comparison", package: "swift-comparison"),
             ]
         ),
         .target(
-            name: "Cardinal Tagged Primitives",
+            name: "Cardinal Tagged",
             dependencies: [
                 "Cardinal Primitive",
-                "Cardinal Error Primitives",
-                "Cardinal Add Primitives",
-                "Cardinal Subtract Primitives",
-                .product(name: "Property Primitives", package: "swift-property-primitives"),
-                .product(name: "Tagged Primitives", package: "swift-tagged-primitives"),
+                "Cardinal Error",
+                "Cardinal Add",
+                "Cardinal Subtract",
+                .product(name: "Property", package: "swift-property"),
+                .product(name: "Tagged", package: "swift-tagged"),
             ]
         ),
 
         .target(
-            name: "Cardinal Primitives Standard Library Integration",
+            name: "Cardinal Standard Library Integration",
             dependencies: [
                 "Cardinal Primitive",
-                "Cardinal Error Primitives",
-                "Cardinal Carrier Primitives",
-                .product(name: "Carrier Primitives", package: "swift-carrier-primitives"),
-                .product(name: "Tagged Primitives", package: "swift-tagged-primitives"),
+                "Cardinal Error",
+                "Cardinal Carrier",
+                .product(name: "Carrier", package: "swift-carrier"),
+                .product(name: "Tagged", package: "swift-tagged"),
                 .product(
-                    name: "Tagged Primitives Standard Library Integration",
-                    package: "swift-tagged-primitives"
+                    name: "Tagged Standard Library Integration",
+                    package: "swift-tagged"
                 ),
             ]
         ),
 
         .target(
-            name: "Cardinal Primitives",
+            name: "Cardinal",
             dependencies: [
                 "Cardinal Primitive",
-                "Cardinal Error Primitives",
-                "Cardinal Add Primitives",
-                "Cardinal Subtract Primitives",
-                "Cardinal Carrier Primitives",
-                "Cardinal Equation Primitives",
-                "Cardinal Hash Primitives",
-                "Cardinal Comparison Primitives",
-                "Cardinal Tagged Primitives",
-                "Cardinal Primitives Standard Library Integration",
-                .product(name: "Tagged Primitives", package: "swift-tagged-primitives"),
+                "Cardinal Error",
+                "Cardinal Add",
+                "Cardinal Subtract",
+                "Cardinal Carrier",
+                "Cardinal Equation",
+                "Cardinal Hash",
+                "Cardinal Comparison",
+                "Cardinal Tagged",
+                "Cardinal Standard Library Integration",
+                .product(name: "Tagged", package: "swift-tagged"),
             ]
         ),
 
         .target(
-            name: "Cardinal Primitives Test Support",
+            name: "Cardinal Test Support",
             dependencies: [
-                "Cardinal Primitives",
+                "Cardinal",
                 .product(
-                    name: "Tagged Primitives Test Support",
-                    package: "swift-tagged-primitives"
+                    name: "Tagged Test Support",
+                    package: "swift-tagged"
                 ),
             ],
             path: "Tests/Support"
         ),
 
         .testTarget(
-            name: "Cardinal Primitives Tests",
+            name: "Cardinal Tests",
             dependencies: [
-                "Cardinal Primitives",
-                "Cardinal Primitives Test Support",
+                "Cardinal",
+                "Cardinal Test Support",
             ]
         ),
     ],
