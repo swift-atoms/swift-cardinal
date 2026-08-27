@@ -46,7 +46,8 @@ let package = Package(
         .testTarget(
             name: "Cardinal Tests",
             dependencies: [
-                "Cardinal"
+                "Cardinal",
+                "Cardinal Standard Library Integration",
             ]
         ),
     ],
