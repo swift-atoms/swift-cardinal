@@ -11,205 +11,42 @@ let package = Package(
         .visionOS(.v27),
     ],
     products: [
-
-        .library(
-            name: "Cardinal Primitive",
-            targets: ["Cardinal Primitive"]
-        ),
-
-        .library(
-            name: "Cardinal Error",
-            targets: ["Cardinal Error"]
-        ),
-        .library(
-            name: "Cardinal Add",
-            targets: ["Cardinal Add"]
-        ),
-        .library(
-            name: "Cardinal Subtract",
-            targets: ["Cardinal Subtract"]
-        ),
-        .library(
-            name: "Cardinal Carrier",
-            targets: ["Cardinal Carrier"]
-        ),
-        .library(
-            name: "Cardinal Equation",
-            targets: ["Cardinal Equation"]
-        ),
-        .library(
-            name: "Cardinal Hash",
-            targets: ["Cardinal Hash"]
-        ),
-        .library(
-            name: "Cardinal Comparison",
-            targets: ["Cardinal Comparison"]
-        ),
-        .library(
-            name: "Cardinal Tagged",
-            targets: ["Cardinal Tagged"]
-        ),
-
-        .library(
-            name: "Cardinal Standard Library Integration",
-            targets: ["Cardinal Standard Library Integration"]
-        ),
-
         .library(
             name: "Cardinal",
             targets: ["Cardinal"]
         ),
-
         .library(
-            name: "Cardinal Test Support",
-            targets: ["Cardinal Test Support"]
+            name: "Cardinal Standard Library Integration",
+            targets: ["Cardinal Standard Library Integration"]
+        ),
+        .library(
+            name: "Cardinal Apple Foundation Integration",
+            targets: ["Cardinal Apple Foundation Integration"]
         ),
     ],
-    dependencies: [
-        .package(
-            url: "https://github.com/swift-molecules/swift-tagged.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-molecules/swift-carrier.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-molecules/swift-property.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-molecules/swift-equation.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-molecules/swift-hash.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-molecules/swift-comparison.git",
-            branch: "main"
-        ),
-    ],
+    dependencies: [],
     targets: [
-
         .target(
-            name: "Cardinal Primitive",
+            name: "Cardinal",
             dependencies: []
         ),
-
-        .target(
-            name: "Cardinal Error",
-            dependencies: [
-                "Cardinal Primitive"
-            ]
-        ),
-        .target(
-            name: "Cardinal Add",
-            dependencies: [
-                "Cardinal Primitive",
-                "Cardinal Error",
-                .product(name: "Property", package: "swift-property"),
-            ]
-        ),
-        .target(
-            name: "Cardinal Subtract",
-            dependencies: [
-                "Cardinal Primitive",
-                "Cardinal Carrier",
-                "Cardinal Error",
-                .product(name: "Property", package: "swift-property"),
-            ]
-        ),
-        .target(
-            name: "Cardinal Carrier",
-            dependencies: [
-                "Cardinal Primitive",
-                .product(name: "Carrier", package: "swift-carrier"),
-            ]
-        ),
-        .target(
-            name: "Cardinal Equation",
-            dependencies: [
-                "Cardinal Primitive",
-                .product(name: "Equation", package: "swift-equation"),
-            ]
-        ),
-        .target(
-            name: "Cardinal Hash",
-            dependencies: [
-                "Cardinal Primitive",
-                .product(name: "Hash", package: "swift-hash"),
-            ]
-        ),
-        .target(
-            name: "Cardinal Comparison",
-            dependencies: [
-                "Cardinal Primitive",
-                .product(name: "Comparison", package: "swift-comparison"),
-            ]
-        ),
-        .target(
-            name: "Cardinal Tagged",
-            dependencies: [
-                "Cardinal Primitive",
-                "Cardinal Error",
-                "Cardinal Add",
-                "Cardinal Subtract",
-                .product(name: "Property", package: "swift-property"),
-                .product(name: "Tagged", package: "swift-tagged"),
-            ]
-        ),
-
         .target(
             name: "Cardinal Standard Library Integration",
             dependencies: [
-                "Cardinal Primitive",
-                "Cardinal Error",
-                "Cardinal Carrier",
-                .product(name: "Carrier", package: "swift-carrier"),
-                .product(name: "Tagged", package: "swift-tagged"),
-                .product(
-                    name: "Tagged Standard Library Integration",
-                    package: "swift-tagged"
-                ),
+                "Cardinal"
             ]
         ),
-
         .target(
-            name: "Cardinal",
-            dependencies: [
-                "Cardinal Primitive",
-                "Cardinal Error",
-                "Cardinal Add",
-                "Cardinal Subtract",
-                "Cardinal Carrier",
-                "Cardinal Equation",
-                "Cardinal Hash",
-                "Cardinal Comparison",
-                "Cardinal Tagged",
-                "Cardinal Standard Library Integration",
-                .product(name: "Tagged", package: "swift-tagged"),
-            ]
-        ),
-
-        .target(
-            name: "Cardinal Test Support",
+            name: "Cardinal Apple Foundation Integration",
             dependencies: [
                 "Cardinal",
-                .product(
-                    name: "Tagged Test Support",
-                    package: "swift-tagged"
-                ),
-            ],
-            path: "Tests/Support"
+                "Cardinal Standard Library Integration",
+            ]
         ),
-
         .testTarget(
             name: "Cardinal Tests",
             dependencies: [
-                "Cardinal",
-                "Cardinal Test Support",
+                "Cardinal"
             ]
         ),
     ],
