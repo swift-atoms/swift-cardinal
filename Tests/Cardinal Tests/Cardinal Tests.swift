@@ -1,7 +1,7 @@
+import Cardinal_Test_Support
 import Testing
 
 @testable import Cardinal
-import Cardinal_Standard_Library_Integration
 
 extension Cardinal {
     @Suite
@@ -34,6 +34,16 @@ extension Cardinal.Test.Unit {
     }
 
     @Test
+    func `zero constant`() {
+        #expect(Cardinal.zero == 0)
+    }
+
+    @Test
+    func `one constant`() {
+        #expect(Cardinal.one == 1)
+    }
+
+    @Test
     func `max constant`() {
         #expect(Cardinal.max.rawValue == UInt.max)
     }
@@ -46,6 +56,47 @@ extension Cardinal.Test.Unit {
     }
 
     @Test
+    func `add saturating`() {
+        let max = Cardinal(UInt.max)
+        #expect(max.add.saturating(.one).rawValue == UInt.max)
+    }
+
+    @Test
+    func `add exact succeeds`() throws(Cardinal.Error) {
+        let a: Cardinal = 5
+        let b: Cardinal = 3
+        let result = try a.add.exact(b)
+        #expect(result == 8)
+    }
+
+    @Test
+    func `subtract saturating`() {
+        let a: Cardinal = 5
+        let b: Cardinal = 3
+        #expect(a.subtract.saturating(b) == 2)
+    }
+
+    @Test
+    func `subtract saturating identity`() {
+        let a: Cardinal = 5
+        #expect(a.subtract.saturating(.zero) == a)
+    }
+
+    @Test
+    func `subtract saturating self`() {
+        let a: Cardinal = 5
+        #expect(a.subtract.saturating(a) == .zero)
+    }
+
+    @Test
+    func `subtract exact success`() throws(Cardinal.Error) {
+        let a: Cardinal = 5
+        let b: Cardinal = 3
+        let result = try a.subtract.exact(b)
+        #expect(result == 2)
+    }
+
+    @Test
     func comparison() {
         let a: Cardinal = 3
         let b: Cardinal = 5
@@ -54,6 +105,7 @@ extension Cardinal.Test.Unit {
         #expect(b > a)
         #expect(b >= a)
         #expect(a == a)
+        #expect(a != b)
     }
 }
 
@@ -63,6 +115,37 @@ extension Cardinal.Test.`Edge Case` {
     func `construction from int fails for negative`() {
         #expect(throws: Cardinal.Error.negativeSource(-1)) {
             try Cardinal(Int(-1))
+        }
+    }
+
+    @Test
+    func `add exact throws on overflow`() {
+        let max = Cardinal(UInt.max)
+        let one = Cardinal.one
+        #expect(throws: Cardinal.Error.overflow) {
+            try max.add.exact(one)
+        }
+    }
+
+    @Test
+    func `subtract saturating underflow`() {
+        let a: Cardinal = 3
+        let b: Cardinal = 5
+        #expect(a.subtract.saturating(b) == 0)
+    }
+
+    @Test
+    func `subtract saturating from zero`() {
+        let a: Cardinal = 5
+        #expect(Cardinal.zero.subtract.saturating(a) == .zero)
+    }
+
+    @Test
+    func `subtract exact throws on underflow`() {
+        let a: Cardinal = 3
+        let b: Cardinal = 5
+        #expect(throws: Cardinal.Error.underflow) {
+            try a.subtract.exact(b)
         }
     }
 

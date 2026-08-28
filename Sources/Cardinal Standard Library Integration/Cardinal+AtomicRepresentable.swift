@@ -1,5 +1,4 @@
 #if SYNCHRONIZATION_AVAILABLE
-    public import Cardinal
     public import Synchronization
 
     extension Cardinal: AtomicRepresentable {

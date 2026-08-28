@@ -1,4 +1,4 @@
-public import Cardinal
+public import Cardinal_Primitive
 
 extension Cardinal: CustomStringConvertible {
 

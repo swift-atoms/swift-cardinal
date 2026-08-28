@@ -1,5 +1,3 @@
-public import Cardinal
-
 extension Cardinal: ExpressibleByIntegerLiteral {
 
     @_disfavoredOverload
