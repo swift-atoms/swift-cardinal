@@ -18,7 +18,7 @@ extension Property::Property where Tag == Cardinal::Cardinal.Add, Base == Cardin
     public func saturating(_ other: Base) -> Base {
         let (result, overflow) = base.rawValue.addingReportingOverflow(other.rawValue)
         if overflow {
-            return Base(.max)
+            return Base(UInt.max)
         }
         return Base(result)
     }

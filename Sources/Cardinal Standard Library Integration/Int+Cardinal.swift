@@ -1,20 +1,6 @@
-public import Cardinal_Error
 public import Cardinal
+public import Cardinal_Error
 public import Carrier_Protocol
-
-extension Cardinal::Cardinal {
-
-    @inlinable
-    public init(
-        _ value: Swift.Int
-    ) throws(Self.Error) {
-        guard value >= .zero else {
-            throw .negativeSource(value)
-        }
-        self.init(UInt(value))
-    }
-
-}
 
 extension Int {
 

@@ -7,7 +7,7 @@ public func << <C: Carrier::Carrier.`Protocol`>(
     lhs: C,
     rhs: some Carrier::Carrier.`Protocol`<Cardinal::Cardinal>
 ) -> C where C.Underlying: FixedWidthInteger {
-    C(lhs.underlying << rhs)
+    C(lhs.underlying << rhs.underlying.rawValue)
 }
 
 @_disfavoredOverload
@@ -16,7 +16,7 @@ public func >> <C: Carrier::Carrier.`Protocol`>(
     lhs: C,
     rhs: some Carrier::Carrier.`Protocol`<Cardinal::Cardinal>
 ) -> C where C.Underlying: FixedWidthInteger {
-    C(lhs.underlying >> rhs)
+    C(lhs.underlying >> rhs.underlying.rawValue)
 }
 
 @_disfavoredOverload

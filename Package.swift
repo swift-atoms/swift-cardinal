@@ -160,10 +160,6 @@ let package = Package(
                 .target(name: "Cardinal Carrier"),
                 .product(name: "Carrier Protocol", package: "swift-carrier"),
                 .product(name: "Tagged", package: "swift-tagged"),
-                .product(
-                    name: "Tagged Standard Library Integration",
-                    package: "swift-tagged"
-                ),
             ]
         ),
 
@@ -187,7 +183,10 @@ let package = Package(
         ),
         .testTarget(
             name: "Cardinal Carrier Tests",
-            dependencies: [.target(name: "Cardinal Carrier")]
+            dependencies: [
+                .target(name: "Cardinal Carrier"),
+                .product(name: "Carrier Protocol", package: "swift-carrier"),
+            ]
         ),
         .testTarget(
             name: "Cardinal Equation Tests",
