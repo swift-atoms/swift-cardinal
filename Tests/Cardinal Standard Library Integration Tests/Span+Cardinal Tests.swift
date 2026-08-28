@@ -1,5 +1,6 @@
 import Testing
 
+import Cardinal_Carrier
 import Cardinal_Standard_Library_Integration
 
 @Suite("Span+Cardinal / MutableSpan+Cardinal")

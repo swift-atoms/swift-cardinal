@@ -203,13 +203,19 @@ let package = Package(
         ),
         .testTarget(
             name: "Cardinal Tagged Tests",
-            dependencies: [.target(name: "Cardinal Tagged")]
+            dependencies: [
+                .target(name: "Cardinal"),
+                .target(name: "Cardinal Error"),
+                .target(name: "Cardinal Tagged"),
+                .product(name: "Tagged", package: "swift-tagged"),
+            ]
         ),
         .testTarget(
             name: "Cardinal Standard Library Integration Tests",
             dependencies: [
                 .target(name: "Cardinal Standard Library Integration"),
                 .target(name: "Cardinal Add"),
+                .target(name: "Cardinal Carrier"),
                 .target(name: "Cardinal Subtract"),
             ]
         ),
