@@ -1,0 +1,7 @@
+extension Cardinal::Cardinal {
+
+    @inlinable
+    public init<T: UnsignedInteger>(_ value: T) {
+        self.init(UInt(value))
+    }
+}
