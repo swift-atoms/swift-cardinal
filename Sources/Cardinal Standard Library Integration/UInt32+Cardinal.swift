@@ -1,9 +1,9 @@
-public import Carrier
+public import Carrier_Protocol
 
 extension UInt32 {
 
     @inlinable
-    public init(_ cardinal: some Carrier.`Protocol`<Cardinal>) {
+    public init(_ cardinal: some Carrier::Carrier.`Protocol`<Cardinal::Cardinal>) {
         self = UInt32(cardinal.underlying.rawValue)
     }
 }

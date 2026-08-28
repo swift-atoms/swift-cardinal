@@ -2,7 +2,7 @@
 # Updated 2026-05-09 — Phase 1 fix dispatch, cohort-wide topic expansion per amendment C7.
 description: "Cardinal types for Swift — non-negative counts with policy-aware arithmetic and phantom-tagged variants."
 topics:
-  - molecules
+  - primitives
   - cardinal
   - type-safety
   - data-structures

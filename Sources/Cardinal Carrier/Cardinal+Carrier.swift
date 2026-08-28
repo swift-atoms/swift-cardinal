@@ -1,31 +1,31 @@
-public import Cardinal_Primitive
-public import Carrier
+public import Cardinal
+public import Carrier_Protocol
 
-extension Cardinal: Carrier.`Protocol` {
+extension Cardinal::Cardinal: Carrier::Carrier.`Protocol` {
 
-    public typealias Underlying = Cardinal
+    public typealias Underlying = Cardinal::Cardinal
 
 }
 
-extension Carrier.`Protocol` where Underlying == Cardinal {
+extension Carrier::Carrier.`Protocol` where Underlying == Cardinal::Cardinal {
 
     @inlinable
-    public var cardinal: Cardinal { underlying }
+    public var cardinal: Cardinal::Cardinal { underlying }
 
     @inlinable
-    public var count: Cardinal { underlying }
+    public var count: Cardinal::Cardinal { underlying }
 }
 
-extension Carrier.`Protocol` where Underlying == Cardinal {
+extension Carrier::Carrier.`Protocol` where Underlying == Cardinal::Cardinal {
 
     @inlinable
-    public static var zero: Self { Self(Cardinal(UInt.zero)) }
+    public static var zero: Self { Self(Cardinal::Cardinal(UInt.zero)) }
 
     @inlinable
-    public static var one: Self { Self(Cardinal(1 as UInt)) }
+    public static var one: Self { Self(Cardinal::Cardinal(1 as UInt)) }
 }
 
-extension Carrier.`Protocol` where Underlying == Cardinal {
+extension Carrier::Carrier.`Protocol` where Underlying == Cardinal::Cardinal {
 
     @inlinable
     public static func + (lhs: Self, rhs: Self) -> Self {

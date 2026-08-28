@@ -1,4 +1,4 @@
-public import Carrier
+public import Carrier_Protocol
 
 extension RawSpan {
 
@@ -7,7 +7,7 @@ extension RawSpan {
     @inlinable
     public init(
         _unsafeStart pointer: UnsafeRawPointer,
-        byteCount: some Carrier.`Protocol`<Cardinal>
+        byteCount: some Carrier::Carrier.`Protocol`<Cardinal::Cardinal>
     ) {
         unsafe self.init(
             _unsafeStart: pointer,

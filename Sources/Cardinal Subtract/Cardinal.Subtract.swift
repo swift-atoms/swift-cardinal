@@ -1,19 +1,19 @@
 public import Cardinal_Carrier
 public import Cardinal_Error
-public import Cardinal_Primitive
+public import Cardinal
 public import Property
 
-extension Cardinal {
+extension Cardinal::Cardinal {
 
     public enum Subtract {}
 
     @inlinable
-    public var subtract: Property<Subtract, Self> {
-        Property(self)
+    public var subtract: Property::Property<Subtract, Self> {
+        Property::Property(self)
     }
 }
 
-extension Property where Tag == Cardinal.Subtract, Base == Cardinal {
+extension Property::Property where Tag == Cardinal::Cardinal.Subtract, Base == Cardinal::Cardinal {
 
     @inlinable
     public func saturating(_ other: Base) -> Base {

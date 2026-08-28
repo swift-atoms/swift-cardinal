@@ -1,6 +1,6 @@
-public import Cardinal_Primitive
+public import Cardinal
 
-extension Cardinal: CustomStringConvertible {
+extension Cardinal::Cardinal: CustomStringConvertible {
 
     public var description: String { rawValue.description }
 }

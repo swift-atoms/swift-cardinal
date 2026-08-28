@@ -1,18 +1,18 @@
 public import Cardinal_Error
-public import Cardinal_Primitive
+public import Cardinal
 public import Property
 
-extension Cardinal {
+extension Cardinal::Cardinal {
 
     public enum Add {}
 
     @inlinable
-    public var add: Property<Add, Self> {
-        Property(self)
+    public var add: Property::Property<Add, Self> {
+        Property::Property(self)
     }
 }
 
-extension Property where Tag == Cardinal.Add, Base == Cardinal {
+extension Property::Property where Tag == Cardinal::Cardinal.Add, Base == Cardinal::Cardinal {
 
     @inlinable
     public func saturating(_ other: Base) -> Base {

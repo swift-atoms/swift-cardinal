@@ -1,4 +1,4 @@
-public import Carrier
+public import Carrier_Protocol
 
 extension Swift.Span where Element: ~Copyable {
 
@@ -7,7 +7,7 @@ extension Swift.Span where Element: ~Copyable {
     @inlinable
     public init(
         _unsafeStart start: UnsafePointer<Element>,
-        count: some Carrier.`Protocol`<Cardinal>
+        count: some Carrier::Carrier.`Protocol`<Cardinal::Cardinal>
     ) {
         unsafe self.init(
             _unsafeStart: start,
@@ -17,25 +17,25 @@ extension Swift.Span where Element: ~Copyable {
 
     @inlinable
     @_lifetime(copy self)
-    public func extracting(first maxLength: some Carrier.`Protocol`<Cardinal>) -> Self {
+    public func extracting(first maxLength: some Carrier::Carrier.`Protocol`<Cardinal::Cardinal>) -> Self {
         self.extracting(first: Int(bitPattern: maxLength.underlying))
     }
 
     @inlinable
     @_lifetime(copy self)
-    public func extracting(droppingFirst k: some Carrier.`Protocol`<Cardinal>) -> Self {
+    public func extracting(droppingFirst k: some Carrier::Carrier.`Protocol`<Cardinal::Cardinal>) -> Self {
         self.extracting(droppingFirst: Int(bitPattern: k.underlying))
     }
 
     @inlinable
     @_lifetime(copy self)
-    public func extracting(last maxLength: some Carrier.`Protocol`<Cardinal>) -> Self {
+    public func extracting(last maxLength: some Carrier::Carrier.`Protocol`<Cardinal::Cardinal>) -> Self {
         self.extracting(last: Int(bitPattern: maxLength.underlying))
     }
 
     @inlinable
     @_lifetime(copy self)
-    public func extracting(droppingLast k: some Carrier.`Protocol`<Cardinal>) -> Self {
+    public func extracting(droppingLast k: some Carrier::Carrier.`Protocol`<Cardinal::Cardinal>) -> Self {
         self.extracting(droppingLast: Int(bitPattern: k.underlying))
     }
 }

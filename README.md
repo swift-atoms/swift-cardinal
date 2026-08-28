@@ -2,26 +2,28 @@
 
 ![Development Status](https://img.shields.io/badge/status-active--development-blue.svg)
 
-A typed cardinal-number primitive — `Cardinal`, a non-negative count, with policy-aware overflow / underflow handling and a phantom-tagged variant `Tagged<Tag, Cardinal>` for per-domain count types.
+A typed cardinal number: `Cardinal` is a non-negative count with policy-aware overflow and underflow handling, plus a phantom-tagged variant for domain-specific count types.
 
-`Cardinal` separates *count* from the two other things stdlib calls `Int`: **position** (see [`swift-ordinal`](https://github.com/swift-molecules/swift-ordinal)) and **signed offset** (see [`swift-affine`](https://github.com/swift-molecules/swift-affine)).
+`Cardinal` separates *count* from the two other things stdlib calls `Int`: **position** (see [`swift-ordinal`](https://github.com/swift-atoms/swift-ordinal)) and **signed offset** (see [`swift-affine`](https://github.com/swift-atoms/swift-affine)).
 
 ---
 
 ## Quick Start
 
 ```swift
-import Cardinal
+import Cardinal_Standard_Library_Integration
+import Cardinal_Add
+import Cardinal_Subtract
 
 // Bare Cardinal — a non-negative count
-let items: Cardinal = 5
-let total = items + Cardinal(3)                            // 8 (trapping +)
-let saturated = items.subtract.saturating(Cardinal(7))     // 0 (monus)
-let amount = try items.subtract.exact(Cardinal(2))         // 3 or throws
+let items: Cardinal::Cardinal = 5
+let total = items + Cardinal::Cardinal(3)                            // 8 (trapping +)
+let saturated = items.subtract.saturating(Cardinal::Cardinal(7))     // 0 (monus)
+let amount = try items.subtract.exact(Cardinal::Cardinal(2))         // 3 or throws
 
 // Phantom-tagged Cardinal — distinct count types per domain
-extension User  { typealias Count = Tagged<Self, Cardinal> }
-extension Inbox { typealias Count = Tagged<Self, Cardinal> }
+extension User  { typealias Count = Tagged::Tagged<Self, Cardinal::Cardinal> }
+extension Inbox { typealias Count = Tagged::Tagged<Self, Cardinal::Cardinal> }
 
 let users: User.Count = 100
 let inbox: Inbox.Count = 12
@@ -38,7 +40,7 @@ Cardinal is backed by `UInt`, which makes non-negativity representational rather
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/swift-molecules/swift-cardinal.git", branch: "main")
+    .package(url: "https://github.com/swift-atoms/swift-cardinal.git", branch: "main")
 ]
 ```
 
@@ -51,24 +53,26 @@ dependencies: [
 )
 ```
 
-The package is pre-1.0 — until 0.1.0 is tagged, depend on `branch: "main"` rather than `from: "0.1.0"`. Requires Swift 6.3.1 and macOS 26 / iOS 26 / tvOS 26 / watchOS 26 / visionOS 26 (or the matching Linux / Windows toolchain).
+The package is pre-1.0 — until 0.1.0 is tagged, depend on `branch: "main"` rather than `from: "0.1.0"`. Requires Swift 6.4 and macOS 27 / iOS 27 / tvOS 27 / watchOS 27 / visionOS 27 (or the matching Linux / Windows toolchain).
 
 ---
 
 ## Architecture
 
-Four library products covering the bare type, its standard-library integration, the umbrella, and a Test Support target.
+The package exposes focused static modules. Import only the behavior a target uses.
 
-| Product | Target | Purpose |
-|---------|--------|---------|
-| `Cardinal` | `Sources/Cardinal/` | Umbrella — re-exports Core and SLI; the default import for application code. Adds `Tagged<Tag, Cardinal>` arithmetic accessors (`.add`, `.subtract`) bridging the Property-based API to phantom-tagged counts. |
-| `Cardinal Core` | `Sources/Cardinal Core/` | The `Cardinal` type itself — backing `UInt` storage, trapping `+`, the `.add` / `.subtract` policy-aware accessors, and `Cardinal.Error`. |
-| `Cardinal Standard Library Integration` | `Sources/Cardinal Standard Library Integration/` | Conformances and integration overloads bridging Cardinal into the standard library: `ExpressibleByIntegerLiteral`, `Int(_:Cardinal)` conversions, `UnsafeBufferPointer` / `Span` / `MutableSpan` / `OutputSpan` initializers accepting `some Carrier.`Protocol`<Cardinal>` counts. |
-| `Cardinal Test Support` | `Tests/Support/` | Re-exports the umbrella + Tagged Test Support fixtures for downstream test consumers. |
-
-Import the narrowest product you need: `Cardinal Core` for just the type, `Cardinal` (the umbrella) for the full surface including SLI bridges and Tagged-cardinal arithmetic.
-
-The package depends on five molecules — `swift-tagged`, `swift-carrier`, `swift-property`, `swift-equation`, `swift-comparison`. See [Related Packages](#related-packages).
+| Product | Purpose |
+|---------|---------|
+| `Cardinal` | The `Cardinal` value and its unsigned storage. |
+| `Cardinal Error` | Typed overflow, underflow, and negative-source errors. |
+| `Cardinal Add` | Exact and saturating addition policies. |
+| `Cardinal Subtract` | Exact and saturating subtraction policies. |
+| `Cardinal Carrier` | Carrier protocol conformance and zero/one identities. |
+| `Cardinal Equation` | Equality protocol conformance. |
+| `Cardinal Hash` | Hash protocol conformance. |
+| `Cardinal Comparison` | Ordering protocol conformance. |
+| `Cardinal Tagged` | Domain-tagged cardinal construction and arithmetic. |
+| `Cardinal Standard Library Integration` | Literal, conversion, collection, pointer, and span integrations. |
 
 Foundation-free.
 
@@ -88,18 +92,19 @@ Foundation-free.
 
 ## Related Packages
 
-Direct dependencies (all already-public Tier 0 molecules):
+Direct dependencies (all already-public Tier 0 primitives):
 
-- [swift-tagged](https://github.com/swift-molecules/swift-tagged) — provides `Tagged<Tag, Underlying>` for the phantom-tagged `Tagged<Tag, Cardinal>` surface.
-- [swift-carrier](https://github.com/swift-molecules/swift-carrier) — provides `Carrier.`Protocol`<Underlying>`, the unified super-protocol Cardinal conforms to (as a trivial self-carrier, `Underlying = Cardinal`).
-- [swift-property](https://github.com/swift-molecules/swift-property) — provides `Property<Tag, Base>`, the carrier underlying the `.add` / `.subtract` policy-aware accessors.
-- [swift-equation](https://github.com/swift-molecules/swift-equation) — provides `Equation.`Protocol``, the `Equatable`-shape conformance Cardinal exposes.
-- [swift-comparison](https://github.com/swift-molecules/swift-comparison) — provides `Comparison.`Protocol``, the `Comparable`-shape conformance Cardinal exposes.
+- [swift-tagged](https://github.com/swift-atoms/swift-tagged) — provides `Tagged<Tag, Underlying>` for the phantom-tagged `Tagged<Tag, Cardinal>` surface.
+- [swift-carrier](https://github.com/swift-atoms/swift-carrier) — provides `Carrier::Carrier.Protocol<Underlying>`, the unified carrier protocol Cardinal conforms to.
+- [swift-property](https://github.com/swift-atoms/swift-property) — provides `Property<Tag, Base>`, the carrier underlying the `.add` / `.subtract` policy-aware accessors.
+- [swift-equation](https://github.com/swift-atoms/swift-equation) — provides `Equation::Equation.Protocol`, the equality conformance Cardinal exposes.
+- [swift-hash](https://github.com/swift-atoms/swift-hash) — provides `Hash::Hash.Protocol`, the hashing conformance Cardinal exposes.
+- [swift-comparison](https://github.com/swift-atoms/swift-comparison) — provides `Comparison::Comparison.Protocol`, the ordering conformance Cardinal exposes.
 
-Companion molecules covering the other two things stdlib calls `Int`:
+Companion primitives covering the other two things stdlib calls `Int`:
 
-- [swift-ordinal](https://github.com/swift-molecules/swift-ordinal) — `Ordinal`, a non-negative position in a 0-indexed sequence.
-- [swift-affine](https://github.com/swift-molecules/swift-affine) — `Affine.Discrete.Vector`, a signed offset between ordinal positions.
+- [swift-ordinal](https://github.com/swift-atoms/swift-ordinal) — `Ordinal`, a non-negative position in a 0-indexed sequence.
+- [swift-affine](https://github.com/swift-atoms/swift-affine) — `Affine.Discrete.Vector`, a signed offset between ordinal positions.
 
 ---
 

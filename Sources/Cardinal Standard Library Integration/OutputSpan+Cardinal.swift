@@ -1,4 +1,4 @@
-public import Carrier
+public import Carrier_Protocol
 
 extension Swift.OutputSpan where Element: ~Copyable {
 
@@ -7,7 +7,7 @@ extension Swift.OutputSpan where Element: ~Copyable {
     @_lifetime(borrow buffer)
     public init(
         buffer: UnsafeMutableBufferPointer<Element>,
-        initializedCount: some Carrier.`Protocol`<Cardinal>
+        initializedCount: some Carrier::Carrier.`Protocol`<Cardinal::Cardinal>
     ) {
         unsafe self.init(
             buffer: buffer,
@@ -17,7 +17,7 @@ extension Swift.OutputSpan where Element: ~Copyable {
 
     @inlinable
     @_lifetime(self: copy self)
-    public mutating func removeLast(_ k: some Carrier.`Protocol`<Cardinal>) {
+    public mutating func removeLast(_ k: some Carrier::Carrier.`Protocol`<Cardinal::Cardinal>) {
         removeLast(Int(bitPattern: k.underlying))
     }
 }
@@ -28,7 +28,7 @@ extension Swift.OutputSpan {
     @_lifetime(self: copy self)
     public mutating func append(
         repeating repeatedValue: Element,
-        count: some Carrier.`Protocol`<Cardinal>
+        count: some Carrier::Carrier.`Protocol`<Cardinal::Cardinal>
     ) {
         append(repeating: repeatedValue, count: Int(bitPattern: count.underlying))
     }

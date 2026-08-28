@@ -1,4 +1,4 @@
-extension Cardinal: ExpressibleByIntegerLiteral {
+extension Cardinal::Cardinal: ExpressibleByIntegerLiteral {
 
     @_disfavoredOverload
     @inlinable

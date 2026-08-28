@@ -1,4 +1,4 @@
-extension Cardinal {
+extension Cardinal::Cardinal {
 
     @inlinable
     public init<T: UnsignedInteger>(_ value: T) {

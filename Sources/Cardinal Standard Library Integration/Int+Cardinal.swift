@@ -1,8 +1,8 @@
 public import Cardinal_Error
-public import Cardinal_Primitive
-public import Carrier
+public import Cardinal
+public import Carrier_Protocol
 
-extension Cardinal {
+extension Cardinal::Cardinal {
 
     @inlinable
     public init(
@@ -20,8 +20,8 @@ extension Int {
 
     @inlinable
     public init(
-        _ cardinal: Cardinal
-    ) throws(Cardinal.Error) {
+        _ cardinal: Cardinal::Cardinal
+    ) throws(Cardinal::Cardinal.Error) {
         guard cardinal.rawValue <= Swift.UInt(Swift.Int.max) else {
             throw .overflow
         }
@@ -29,17 +29,17 @@ extension Int {
     }
 
     @inlinable
-    public init(bitPattern cardinal: Cardinal) {
+    public init(bitPattern cardinal: Cardinal::Cardinal) {
         self = Int(bitPattern: cardinal.rawValue)
     }
 
     @inlinable
-    public init(bitPattern carrier: some Carrier.`Protocol`<Cardinal>) {
+    public init(bitPattern carrier: some Carrier::Carrier.`Protocol`<Cardinal::Cardinal>) {
         self = Int(bitPattern: carrier.underlying)
     }
 
     @inlinable
-    public init(clamping cardinal: Cardinal) {
+    public init(clamping cardinal: Cardinal::Cardinal) {
         self = Int(clamping: cardinal.rawValue)
     }
 }

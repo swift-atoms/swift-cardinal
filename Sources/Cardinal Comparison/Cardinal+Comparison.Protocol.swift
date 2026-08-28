@@ -1,4 +1,4 @@
-public import Cardinal_Primitive
-public import Comparison
+public import Cardinal
+public import Comparison_Protocol
 
-extension Cardinal: Comparison.`Protocol` {}
+extension Cardinal::Cardinal: Comparison::Comparison.`Protocol` {}

@@ -1,4 +1,4 @@
-public import Cardinal_Primitive
-public import Equation
+public import Cardinal
+public import Equation_Protocol
 
-extension Cardinal: Equation.`Protocol` {}
+extension Cardinal::Cardinal: Equation::Equation.`Protocol` {}
