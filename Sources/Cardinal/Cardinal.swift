@@ -1,5 +1,3 @@
-public import Addition
-
 public struct Cardinal {
 
     public let rawValue: UInt
