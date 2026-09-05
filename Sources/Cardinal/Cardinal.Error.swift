@@ -1,6 +1,5 @@
-public import Cardinal
 
-extension Cardinal::Cardinal {
+extension Cardinal {
 
     public enum Error: Swift.Error, Hashable, Sendable {
 

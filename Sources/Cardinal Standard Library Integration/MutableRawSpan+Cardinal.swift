@@ -7,7 +7,7 @@ extension MutableRawSpan {
     @inlinable
     public init(
         _unsafeStart pointer: UnsafeMutableRawPointer,
-        byteCount: some Carrier::Carrier.`Protocol`<Cardinal::Cardinal>
+        byteCount: some Carrier::Carrier.`Protocol`<Cardinal>
     ) {
         unsafe self.init(
             _unsafeStart: pointer,

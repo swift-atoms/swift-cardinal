@@ -1,11 +1,10 @@
-public import Cardinal
 public import Carrier_Protocol
 
 @_disfavoredOverload
 @inlinable
 public func << <C: Carrier::Carrier.`Protocol`>(
     lhs: C,
-    rhs: some Carrier::Carrier.`Protocol`<Cardinal::Cardinal>
+    rhs: some Carrier::Carrier.`Protocol`<Cardinal>
 ) -> C where C.Underlying: FixedWidthInteger {
     C(lhs.underlying << rhs.underlying.rawValue)
 }
@@ -14,7 +13,7 @@ public func << <C: Carrier::Carrier.`Protocol`>(
 @inlinable
 public func >> <C: Carrier::Carrier.`Protocol`>(
     lhs: C,
-    rhs: some Carrier::Carrier.`Protocol`<Cardinal::Cardinal>
+    rhs: some Carrier::Carrier.`Protocol`<Cardinal>
 ) -> C where C.Underlying: FixedWidthInteger {
     C(lhs.underlying >> rhs.underlying.rawValue)
 }
@@ -23,7 +22,7 @@ public func >> <C: Carrier::Carrier.`Protocol`>(
 @inlinable
 public func <<= <C: Carrier::Carrier.`Protocol`>(
     lhs: inout C,
-    rhs: some Carrier::Carrier.`Protocol`<Cardinal::Cardinal>
+    rhs: some Carrier::Carrier.`Protocol`<Cardinal>
 ) where C.Underlying: FixedWidthInteger {
     lhs = lhs << rhs
 }
@@ -32,7 +31,7 @@ public func <<= <C: Carrier::Carrier.`Protocol`>(
 @inlinable
 public func >>= <C: Carrier::Carrier.`Protocol`>(
     lhs: inout C,
-    rhs: some Carrier::Carrier.`Protocol`<Cardinal::Cardinal>
+    rhs: some Carrier::Carrier.`Protocol`<Cardinal>
 ) where C.Underlying: FixedWidthInteger {
     lhs = lhs >> rhs
 }

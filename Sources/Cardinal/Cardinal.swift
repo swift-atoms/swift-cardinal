@@ -1,3 +1,5 @@
+public import Addition
+
 public struct Cardinal {
 
     public let rawValue: UInt
@@ -23,9 +25,8 @@ extension Cardinal {
 
     @inlinable
     public static func + (lhs: Self, rhs: Self) -> Self {
-        let (result, overflow) = lhs.rawValue.addingReportingOverflow(rhs.rawValue)
-        precondition(!overflow, "Cardinal overflow in addition")
-        return Self(result)
+        do { return try lhs.add.exact(rhs) }
+        catch { preconditionFailure("Cardinal overflow in addition") }
     }
 
     @inlinable

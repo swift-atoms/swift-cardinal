@@ -4,7 +4,7 @@ public import Carrier_Protocol
 @inlinable
 public func << <RawValue: FixedWidthInteger>(
     lhs: RawValue,
-    rhs: some Carrier::Carrier.`Protocol`<Cardinal::Cardinal>
+    rhs: some Carrier::Carrier.`Protocol`<Cardinal>
 ) -> RawValue {
     let shift = Int(bitPattern: rhs.underlying)
     precondition(shift >= 0 && shift < RawValue.bitWidth, "Shift amount out of range")
@@ -14,7 +14,7 @@ public func << <RawValue: FixedWidthInteger>(
 @inlinable
 public func >> <RawValue: FixedWidthInteger>(
     lhs: RawValue,
-    rhs: some Carrier::Carrier.`Protocol`<Cardinal::Cardinal>
+    rhs: some Carrier::Carrier.`Protocol`<Cardinal>
 ) -> RawValue {
     let shift = Int(bitPattern: rhs.underlying)
     precondition(shift >= 0 && shift < RawValue.bitWidth, "Shift amount out of range")
@@ -24,7 +24,7 @@ public func >> <RawValue: FixedWidthInteger>(
 @inlinable
 public func <<= <RawValue: FixedWidthInteger>(
     lhs: inout RawValue,
-    rhs: some Carrier::Carrier.`Protocol`<Cardinal::Cardinal>
+    rhs: some Carrier::Carrier.`Protocol`<Cardinal>
 ) {
     lhs = lhs << rhs
 }
@@ -32,7 +32,7 @@ public func <<= <RawValue: FixedWidthInteger>(
 @inlinable
 public func >>= <RawValue: FixedWidthInteger>(
     lhs: inout RawValue,
-    rhs: some Carrier::Carrier.`Protocol`<Cardinal::Cardinal>
+    rhs: some Carrier::Carrier.`Protocol`<Cardinal>
 ) {
     lhs = lhs >> rhs
 }

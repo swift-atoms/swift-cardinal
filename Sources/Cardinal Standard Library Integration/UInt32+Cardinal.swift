@@ -3,7 +3,7 @@ public import Carrier_Protocol
 extension UInt32 {
 
     @inlinable
-    public init(_ cardinal: some Carrier::Carrier.`Protocol`<Cardinal::Cardinal>) {
+    public init(_ cardinal: some Carrier::Carrier.`Protocol`<Cardinal>) {
         self = UInt32(cardinal.underlying.rawValue)
     }
 }

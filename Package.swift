@@ -11,52 +11,22 @@ let package = Package(
         .visionOS(.v27),
     ],
     products: [
-
-        .library(
-            name: "Cardinal",
-            targets: ["Cardinal"]
-        ),
-
-        .library(
-            name: "Cardinal Error",
-            targets: ["Cardinal Error"]
-        ),
-        .library(
-            name: "Cardinal Add",
-            targets: ["Cardinal Add"]
-        ),
-        .library(
-            name: "Cardinal Subtract",
-            targets: ["Cardinal Subtract"]
-        ),
-        .library(
-            name: "Cardinal Carrier",
-            targets: ["Cardinal Carrier"]
-        ),
-        .library(
-            name: "Cardinal Equation",
-            targets: ["Cardinal Equation"]
-        ),
-        .library(
-            name: "Cardinal Hash",
-            targets: ["Cardinal Hash"]
-        ),
-        .library(
-            name: "Cardinal Comparison",
-            targets: ["Cardinal Comparison"]
-        ),
-        .library(
-            name: "Cardinal Tagged",
-            targets: ["Cardinal Tagged"]
-        ),
-
+        .library(name: "Cardinal", targets: ["Cardinal"]),
         .library(
             name: "Cardinal Standard Library Integration",
             targets: ["Cardinal Standard Library Integration"]
         ),
-
     ],
     dependencies: [
+        .package(url: "https://github.com/swift-atoms/swift-magnitude.git", branch: "main"),
+        .package(
+            url: "https://github.com/swift-atoms/swift-addition.git",
+            branch: "main"
+        ),
+        .package(
+            url: "https://github.com/swift-atoms/swift-subtraction.git",
+            branch: "main"
+        ),
         .package(
             url: "https://github.com/swift-atoms/swift-tagged.git",
             branch: "main"
@@ -69,153 +39,43 @@ let package = Package(
             url: "https://github.com/swift-atoms/swift-property.git",
             branch: "main"
         ),
-        .package(
-            url: "https://github.com/swift-atoms/swift-equation.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-atoms/swift-hash.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-atoms/swift-comparison.git",
-            branch: "main"
-        ),
     ],
     targets: [
-
         .target(
             name: "Cardinal",
-            dependencies: []
-        ),
-
-        .target(
-            name: "Cardinal Error",
             dependencies: [
-                .target(name: "Cardinal")
-            ]
-        ),
-        .target(
-            name: "Cardinal Add",
-            dependencies: [
-                .target(name: "Cardinal"),
-                .target(name: "Cardinal Error"),
-                .product(name: "Property", package: "swift-property"),
-            ]
-        ),
-        .target(
-            name: "Cardinal Subtract",
-            dependencies: [
-                .target(name: "Cardinal"),
-                .target(name: "Cardinal Carrier"),
-                .target(name: "Cardinal Error"),
-                .product(name: "Property", package: "swift-property"),
-            ]
-        ),
-        .target(
-            name: "Cardinal Carrier",
-            dependencies: [
-                .target(name: "Cardinal"),
-                .product(name: "Carrier Protocol", package: "swift-carrier"),
-            ]
-        ),
-        .target(
-            name: "Cardinal Equation",
-            dependencies: [
-                .target(name: "Cardinal"),
-                .product(name: "Equation Protocol", package: "swift-equation"),
-            ]
-        ),
-        .target(
-            name: "Cardinal Hash",
-            dependencies: [
-                .target(name: "Cardinal"),
-                .product(name: "Hash Protocol", package: "swift-hash"),
-            ]
-        ),
-        .target(
-            name: "Cardinal Comparison",
-            dependencies: [
-                .target(name: "Cardinal"),
-                .product(name: "Comparison Protocol", package: "swift-comparison"),
-            ]
-        ),
-        .target(
-            name: "Cardinal Tagged",
-            dependencies: [
-                .target(name: "Cardinal"),
-                .target(name: "Cardinal Error"),
-                .target(name: "Cardinal Add"),
-                .target(name: "Cardinal Subtract"),
-                .product(name: "Property", package: "swift-property"),
+                .product(name: "Magnitude", package: "swift-magnitude"),
+                .product(name: "Addition", package: "swift-addition"),
+                .product(name: "Subtraction", package: "swift-subtraction"),
                 .product(name: "Tagged", package: "swift-tagged"),
+                .product(name: "Carrier Protocol", package: "swift-carrier"),
+                .product(name: "Property", package: "swift-property"),
             ]
         ),
-
         .target(
             name: "Cardinal Standard Library Integration",
             dependencies: [
                 .target(name: "Cardinal"),
-                .target(name: "Cardinal Error"),
-                .target(name: "Cardinal Carrier"),
-                .product(name: "Carrier Protocol", package: "swift-carrier"),
                 .product(name: "Tagged", package: "swift-tagged"),
+                .product(name: "Carrier Protocol", package: "swift-carrier"),
             ]
         ),
-
         .testTarget(
             name: "Cardinal Tests",
             dependencies: [
+                .product(name: "Magnitude", package: "swift-magnitude"),
                 .target(name: "Cardinal"),
-            ]
-        ),
-        .testTarget(
-            name: "Cardinal Error Tests",
-            dependencies: [.target(name: "Cardinal Error")]
-        ),
-        .testTarget(
-            name: "Cardinal Add Tests",
-            dependencies: [.target(name: "Cardinal Add")]
-        ),
-        .testTarget(
-            name: "Cardinal Subtract Tests",
-            dependencies: [.target(name: "Cardinal Subtract")]
-        ),
-        .testTarget(
-            name: "Cardinal Carrier Tests",
-            dependencies: [
-                .target(name: "Cardinal Carrier"),
-                .product(name: "Carrier Protocol", package: "swift-carrier"),
-            ]
-        ),
-        .testTarget(
-            name: "Cardinal Equation Tests",
-            dependencies: [.target(name: "Cardinal Equation")]
-        ),
-        .testTarget(
-            name: "Cardinal Hash Tests",
-            dependencies: [.target(name: "Cardinal Hash")]
-        ),
-        .testTarget(
-            name: "Cardinal Comparison Tests",
-            dependencies: [.target(name: "Cardinal Comparison")]
-        ),
-        .testTarget(
-            name: "Cardinal Tagged Tests",
-            dependencies: [
-                .target(name: "Cardinal"),
-                .target(name: "Cardinal Error"),
-                .target(name: "Cardinal Tagged"),
+                .product(name: "Addition", package: "swift-addition"),
+                .product(name: "Subtraction", package: "swift-subtraction"),
+                .product(name: "Property", package: "swift-property"),
                 .product(name: "Tagged", package: "swift-tagged"),
+                .product(name: "Carrier Protocol", package: "swift-carrier"),
             ]
         ),
         .testTarget(
             name: "Cardinal Standard Library Integration Tests",
             dependencies: [
-                .target(name: "Cardinal Standard Library Integration"),
-                .target(name: "Cardinal Add"),
-                .target(name: "Cardinal Carrier"),
-                .target(name: "Cardinal Subtract"),
+                .target(name: "Cardinal Standard Library Integration")
             ]
         ),
     ],
@@ -232,13 +92,11 @@ for target in package.targets where ![.system, .binary, .plugin, .macro].contain
         .enableExperimentalFeature("Lifetimes"),
         .enableUpcomingFeature("InferIsolatedConformances"),
     ]
-
     let package: [SwiftSetting] = [
         .define(
             "SYNCHRONIZATION_AVAILABLE",
             .when(platforms: [.macOS, .iOS, .tvOS, .watchOS, .visionOS, .linux, .windows])
         )
     ]
-
     target.swiftSettings = (target.swiftSettings ?? []) + ecosystem + package
 }

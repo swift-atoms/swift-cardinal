@@ -1,6 +1,6 @@
 import Testing
 
-import Cardinal_Carrier
+import Cardinal
 import Cardinal_Standard_Library_Integration
 
 @Suite("Span+Cardinal / MutableSpan+Cardinal")
@@ -17,7 +17,7 @@ extension Tests.Unit {
         values.withUnsafeBufferPointer { buffer in
             let span = unsafe Swift.Span(
                 _unsafeStart: buffer.baseAddress!,
-                count: Cardinal::Cardinal(3 as UInt)
+                count: Cardinal(3 as UInt)
             )
             #expect(span.count == 3)
             #expect(span[0] == 10)
@@ -32,7 +32,7 @@ extension Tests.Unit {
         values.withUnsafeMutableBufferPointer { buffer in
             var span = unsafe Swift.MutableSpan(
                 _unsafeStart: buffer.baseAddress!,
-                count: Cardinal::Cardinal(3 as UInt)
+                count: Cardinal(3 as UInt)
             )
             #expect(span.count == 3)
             span[0] = 99

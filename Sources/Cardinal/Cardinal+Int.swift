@@ -1,6 +1,5 @@
-public import Cardinal
 
-extension Cardinal::Cardinal {
+extension Cardinal {
 
     @inlinable
     public init(_ value: Swift.Int) throws(Self.Error) {
