@@ -7,7 +7,10 @@ extension Swift.UnsafeMutablePointer {
         from source: UnsafePointer<Pointee>,
         count: some Carrier::Carrier.`Protocol`<Cardinal>
     ) {
-        unsafe self.initialize(from: source, count: Int(bitPattern: count.underlying))
+        guard let length = try? Int(count.underlying) else {
+            preconditionFailure("Count is not representable as Int")
+        }
+        unsafe self.initialize(from: source, count: length)
     }
 }
 
@@ -18,6 +21,9 @@ extension Swift.UnsafeMutablePointer where Pointee: ~Copyable {
         from source: UnsafeMutablePointer,
         count: some Carrier::Carrier.`Protocol`<Cardinal>
     ) {
-        unsafe self.moveInitialize(from: source, count: Int(bitPattern: count.underlying))
+        guard let length = try? Int(count.underlying) else {
+            preconditionFailure("Count is not representable as Int")
+        }
+        unsafe self.moveInitialize(from: source, count: length)
     }
 }

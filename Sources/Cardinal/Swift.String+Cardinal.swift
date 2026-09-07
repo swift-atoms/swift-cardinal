@@ -4,6 +4,9 @@ extension Swift.String {
 
     @inlinable
     public init(repeating repeatedValue: String, count: some Carrier::Carrier.`Protocol`<Cardinal>) {
-        self.init(repeating: repeatedValue, count: Int(bitPattern: count.underlying))
+        guard let length = try? Int(count.underlying) else {
+            preconditionFailure("Count is not representable as Int")
+        }
+        self.init(repeating: repeatedValue, count: length)
     }
 }

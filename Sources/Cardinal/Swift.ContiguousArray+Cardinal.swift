@@ -4,7 +4,10 @@ extension Swift.ContiguousArray {
 
     @inlinable
     public init(repeating repeatedValue: Element, count: some Carrier::Carrier.`Protocol`<Cardinal>) {
-        self.init(repeating: repeatedValue, count: Int(bitPattern: count.underlying))
+        guard let length = try? Int(count.underlying) else {
+            preconditionFailure("Array count is not representable as Int")
+        }
+        self.init(repeating: repeatedValue, count: length)
     }
 
     @inlinable
@@ -15,12 +18,21 @@ extension Swift.ContiguousArray {
             _ initializedCount: inout C
         ) throws(E) -> Void
     ) throws(E) {
+        guard let capacity = try? Int(unsafeUninitializedCapacity.underlying) else {
+            preconditionFailure("Array capacity is not representable as Int")
+        }
         try unsafe self.init(
-            unsafeUninitializedCapacity: Int(bitPattern: unsafeUninitializedCapacity.underlying),
+            unsafeUninitializedCapacity: capacity,
             initializingWith: { buffer, count throws(E) in
-                var typedCount = C(Cardinal(UInt(bitPattern: count)))
+                var typedCount = C(Cardinal(UInt(count)))
+                defer {
+                    guard let initializedCount = try? Int(typedCount.underlying) else {
+                        preconditionFailure("Initialized count is not representable as Int")
+                    }
+                    precondition(initializedCount <= capacity, "Initialized count exceeds capacity")
+                    count = initializedCount
+                }
                 try unsafe initializer(&buffer, &typedCount)
-                count = Int(bitPattern: typedCount.underlying)
             }
         )
     }

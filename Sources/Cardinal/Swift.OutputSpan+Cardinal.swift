@@ -9,16 +9,22 @@ extension Swift.OutputSpan where Element: ~Copyable {
         buffer: UnsafeMutableBufferPointer<Element>,
         initializedCount: some Carrier::Carrier.`Protocol`<Cardinal>
     ) {
+        guard let length = try? Int(initializedCount.underlying) else {
+            preconditionFailure("Initialized count is not representable as Int")
+        }
         unsafe self.init(
             buffer: buffer,
-            initializedCount: Int(bitPattern: initializedCount.underlying)
+            initializedCount: length
         )
     }
 
     @inlinable
     @_lifetime(self: copy self)
     public mutating func removeLast(_ k: some Carrier::Carrier.`Protocol`<Cardinal>) {
-        removeLast(Int(bitPattern: k.underlying))
+        guard let length = try? Int(k.underlying) else {
+            preconditionFailure("Count is not representable as Int")
+        }
+        removeLast(length)
     }
 }
 
@@ -30,6 +36,9 @@ extension Swift.OutputSpan {
         repeating repeatedValue: Element,
         count: some Carrier::Carrier.`Protocol`<Cardinal>
     ) {
-        append(repeating: repeatedValue, count: Int(bitPattern: count.underlying))
+        guard let length = try? Int(count.underlying) else {
+            preconditionFailure("Count is not representable as Int")
+        }
+        append(repeating: repeatedValue, count: length)
     }
 }
