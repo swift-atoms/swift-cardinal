@@ -1,6 +1,6 @@
 import Addition
 import Cardinal
-import Carrier_Protocol
+import Carrier
 import Property
 import Subtraction
 import Testing

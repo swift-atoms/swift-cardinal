@@ -48,7 +48,7 @@ let package = Package(
                 .product(name: "Addition", package: "swift-addition"),
                 .product(name: "Subtraction", package: "swift-subtraction"),
                 .product(name: "Tagged", package: "swift-tagged"),
-                .product(name: "Carrier Protocol", package: "swift-carrier"),
+                .product(name: "Carrier", package: "swift-carrier"),
                 .product(name: "Property", package: "swift-property"),
             ]
         ),
@@ -57,7 +57,7 @@ let package = Package(
             dependencies: [
                 .target(name: "Cardinal"),
                 .product(name: "Tagged", package: "swift-tagged"),
-                .product(name: "Carrier Protocol", package: "swift-carrier"),
+                .product(name: "Carrier", package: "swift-carrier"),
             ]
         ),
         .testTarget(
@@ -69,7 +69,7 @@ let package = Package(
                 .product(name: "Subtraction", package: "swift-subtraction"),
                 .product(name: "Property", package: "swift-property"),
                 .product(name: "Tagged", package: "swift-tagged"),
-                .product(name: "Carrier Protocol", package: "swift-carrier"),
+                .product(name: "Carrier", package: "swift-carrier"),
             ]
         ),
         .testTarget(
