@@ -12,10 +12,9 @@ let package = Package(
     ],
     products: [
         .library(name: "Cardinal", targets: ["Cardinal"]),
-        .library(
-            name: "Cardinal Standard Library Integration",
-            targets: ["Cardinal Standard Library Integration"]
-        ),
+        .library(name: "Cardinal Standard Library Integration", targets: ["Cardinal Standard Library Integration"]),
+        .library(name: "Cardinal Foundation Library Integration", targets: ["Cardinal Foundation Library Integration"]),
+        .library(name: "Cardinal Test Support", targets: ["Cardinal Test Support"]),
     ],
     dependencies: [
         .package(url: "https://github.com/swift-atoms/swift-magnitude.git", branch: "main"),
@@ -50,7 +49,8 @@ let package = Package(
                 .product(name: "Tagged", package: "swift-tagged"),
                 .product(name: "Carrier", package: "swift-carrier"),
                 .product(name: "Property", package: "swift-property"),
-            ]
+            ],
+            path: "Sources/Cardinal"
         ),
         .target(
             name: "Cardinal Standard Library Integration",
@@ -58,7 +58,23 @@ let package = Package(
                 .target(name: "Cardinal"),
                 .product(name: "Tagged", package: "swift-tagged"),
                 .product(name: "Carrier", package: "swift-carrier"),
-            ]
+            ],
+            path: "Sources/Cardinal Standard Library Integration"
+        ),
+        .target(
+            name: "Cardinal Foundation Library Integration",
+            dependencies: [
+                .target(name: "Cardinal"),
+                .target(name: "Cardinal Standard Library Integration"),
+            ],
+            path: "Sources/Cardinal Foundation Library Integration"
+        ),
+        .target(
+            name: "Cardinal Test Support",
+            dependencies: [
+                .target(name: "Cardinal"),
+            ],
+            path: "Tests/Support"
         ),
         .testTarget(
             name: "Cardinal Tests",
@@ -70,20 +86,18 @@ let package = Package(
                 .product(name: "Property", package: "swift-property"),
                 .product(name: "Tagged", package: "swift-tagged"),
                 .product(name: "Carrier", package: "swift-carrier"),
-            ]
-        ),
-        .testTarget(
-            name: "Cardinal Standard Library Integration Tests",
-            dependencies: [
-                .target(name: "Cardinal Standard Library Integration")
-            ]
+                .target(name: "Cardinal Standard Library Integration"),
+                .target(name: "Cardinal Test Support"),
+                .target(name: "Cardinal Foundation Library Integration"),
+            ],
+            path: "Tests/Cardinal Tests"
         ),
     ],
     swiftLanguageModes: [.v6]
 )
 
-for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
-    let ecosystem: [SwiftSetting] = [
+for target in package.targets {
+    target.swiftSettings = [
         .strictMemorySafety(),
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
@@ -91,12 +105,6 @@ for target in package.targets where ![.system, .binary, .plugin, .macro].contain
         .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
         .enableExperimentalFeature("Lifetimes"),
         .enableUpcomingFeature("InferIsolatedConformances"),
+        .define("SYNCHRONIZATION_AVAILABLE", .when(platforms: [.macOS, .iOS, .tvOS, .watchOS, .visionOS, .linux, .windows])),
     ]
-    let package: [SwiftSetting] = [
-        .define(
-            "SYNCHRONIZATION_AVAILABLE",
-            .when(platforms: [.macOS, .iOS, .tvOS, .watchOS, .visionOS, .linux, .windows])
-        )
-    ]
-    target.swiftSettings = (target.swiftSettings ?? []) + ecosystem + package
 }

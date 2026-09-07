@@ -1,6 +1,6 @@
-@_exported import Addition
-@_exported import Carrier
-@_exported import Magnitude
-@_exported import Property
-@_exported import Subtraction
-@_exported import Tagged
+@_exported public import Addition
+@_exported public import Carrier
+@_exported public import Magnitude
+@_exported public import Property
+@_exported public import Subtraction
+@_exported public import Tagged
