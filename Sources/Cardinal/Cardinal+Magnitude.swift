@@ -10,7 +10,7 @@ extension Cardinal: Magnitude::Scalar {
 }
 
 extension Magnitude::Magnitude where Storage == Cardinal {
-    /// Every Cardinal is finite and nonnegative, so validation always succeeds.
+
     @inlinable
     public init(_ cardinal: Cardinal) {
         try! self.init(validating: cardinal)
