@@ -1,4 +1,3 @@
-
 extension Cardinal {
 
     public enum Error: Swift.Error, Hashable, Sendable {

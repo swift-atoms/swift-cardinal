@@ -1,7 +1,6 @@
 import Testing
 
 import Cardinal
-import Cardinal_Standard_Library_Integration
 
 @Suite("Span+Cardinal / MutableSpan+Cardinal")
 struct Tests {

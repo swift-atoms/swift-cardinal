@@ -1,6 +1,6 @@
 public import Carrier
 
-extension ContiguousArray {
+extension Swift.ContiguousArray {
 
     @inlinable
     public init(repeating repeatedValue: Element, count: some Carrier::Carrier.`Protocol`<Cardinal>) {

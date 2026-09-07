@@ -1,6 +1,6 @@
 public import Carrier
 
-extension RangeReplaceableCollection {
+extension Swift.RangeReplaceableCollection {
 
     @inlinable
     public mutating func reserveCapacity(_ minimumCapacity: some Carrier::Carrier.`Protocol`<Cardinal>) {

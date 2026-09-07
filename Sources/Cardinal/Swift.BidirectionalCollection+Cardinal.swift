@@ -1,6 +1,6 @@
 public import Carrier
 
-extension BidirectionalCollection where Self: RangeReplaceableCollection {
+extension Swift.BidirectionalCollection where Self: RangeReplaceableCollection {
 
     @inlinable
     public mutating func removeLast(_ k: some Carrier::Carrier.`Protocol`<Cardinal>) {

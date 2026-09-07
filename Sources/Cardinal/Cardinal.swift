@@ -3,7 +3,7 @@ public struct Cardinal {
     public let rawValue: UInt
 }
 
-extension Cardinal: Sendable {}
+extension Cardinal: Swift.Sendable {}
 
 extension Cardinal {
 

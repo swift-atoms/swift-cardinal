@@ -1,4 +1,3 @@
-public import Cardinal
 public import Carrier
 
 @inlinable

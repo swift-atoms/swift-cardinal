@@ -1,6 +1,6 @@
 public import Carrier
 
-extension UnsafeBufferPointer where Element: ~Copyable {
+extension Swift.UnsafeBufferPointer where Element: ~Copyable {
 
     @inlinable
     public init(start: UnsafePointer<Element>?, count: some Carrier::Carrier.`Protocol`<Cardinal>) {

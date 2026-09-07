@@ -12,8 +12,8 @@ let package = Package(
     ],
     products: [
         .library(name: "Cardinal", targets: ["Cardinal"]),
-        .library(name: "Cardinal Standard Library Integration", targets: ["Cardinal Standard Library Integration"]),
-        .library(name: "Cardinal Foundation Library Integration", targets: ["Cardinal Foundation Library Integration"]),
+
+        .library(name: "Cardinal Foundation Integration", targets: ["Cardinal Foundation Integration"]),
         .library(name: "Cardinal Test Support", targets: ["Cardinal Test Support"]),
     ],
     dependencies: [
@@ -52,22 +52,13 @@ let package = Package(
             ],
             path: "Sources/Cardinal"
         ),
+        
         .target(
-            name: "Cardinal Standard Library Integration",
+            name: "Cardinal Foundation Integration",
             dependencies: [
                 .target(name: "Cardinal"),
-                .product(name: "Tagged", package: "swift-tagged"),
-                .product(name: "Carrier", package: "swift-carrier"),
             ],
-            path: "Sources/Cardinal Standard Library Integration"
-        ),
-        .target(
-            name: "Cardinal Foundation Library Integration",
-            dependencies: [
-                .target(name: "Cardinal"),
-                .target(name: "Cardinal Standard Library Integration"),
-            ],
-            path: "Sources/Cardinal Foundation Library Integration"
+            path: "Sources/Cardinal Foundation Integration"
         ),
         .target(
             name: "Cardinal Test Support",
@@ -86,9 +77,8 @@ let package = Package(
                 .product(name: "Property", package: "swift-property"),
                 .product(name: "Tagged", package: "swift-tagged"),
                 .product(name: "Carrier", package: "swift-carrier"),
-                .target(name: "Cardinal Standard Library Integration"),
                 .target(name: "Cardinal Test Support"),
-                .target(name: "Cardinal Foundation Library Integration"),
+                .target(name: "Cardinal Foundation Integration"),
             ],
             path: "Tests/Cardinal Tests"
         ),

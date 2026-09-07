@@ -1,6 +1,6 @@
 public import Carrier
 
-extension RawSpan {
+extension Swift.RawSpan {
 
     @unsafe
     @_lifetime(borrow pointer)

@@ -1,6 +1,6 @@
 public import Carrier
 
-extension String {
+extension Swift.String {
 
     @inlinable
     public init(repeating repeatedValue: String, count: some Carrier::Carrier.`Protocol`<Cardinal>) {

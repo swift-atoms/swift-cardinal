@@ -1,6 +1,6 @@
 public import Carrier
 
-extension UnsafeMutableRawBufferPointer {
+extension Swift.UnsafeMutableRawBufferPointer {
 
     @inlinable
     public init(start: UnsafeMutableRawPointer?, count: some Carrier::Carrier.`Protocol`<Cardinal>) {
