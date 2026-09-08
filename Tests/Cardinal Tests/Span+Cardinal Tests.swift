@@ -2,14 +2,14 @@ import Testing
 
 import Cardinal
 
-@Suite("Span+Cardinal / MutableSpan+Cardinal")
-struct Tests {
-    @Suite struct Unit {}
-    @Suite struct `Edge Case` {}
-    @Suite struct Integration {}
+@Suite
+struct `Spans preserve typed Cardinal counts through construction` {
+    @Suite struct `Typed Cardinal counts select readable and mutable span extents` {}
+    @Suite struct `Zero typed Cardinal counts construct empty spans` {}
+    @Suite struct `No typed span construction integration cases are defined` {}
 }
 
-extension Tests.Unit {
+extension `Spans preserve typed Cardinal counts through construction`.`Typed Cardinal counts select readable and mutable span extents` {
     @Test
     func `Span typed-Cardinal init reads the underlying buffer`() {
         let values: [Int] = [10, 20, 30]
@@ -42,7 +42,7 @@ extension Tests.Unit {
     }
 }
 
-extension Tests.`Edge Case` {
+extension `Spans preserve typed Cardinal counts through construction`.`Zero typed Cardinal counts construct empty spans` {
     @Test
     func `Span typed-Cardinal init with zero count is empty`() {
         let values: [Int] = [7]
