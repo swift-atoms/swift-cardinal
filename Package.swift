@@ -45,6 +45,7 @@ let package = Package(
         ),
     ],
     targets: [
+        .testTarget(name: "Cardinal Range Tests", dependencies: [.target(name: "Cardinal")]),
         .target(
             name: "Cardinal",
             dependencies: [
