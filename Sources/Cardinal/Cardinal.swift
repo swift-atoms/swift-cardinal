@@ -57,3 +57,20 @@ extension Cardinal {
         lhs.rawValue >= rhs.rawValue
     }
 }
+
+extension Cardinal {
+    @inlinable
+    public init<T: UnsignedInteger>(_ value: T) {
+        self.init(UInt(value))
+    }
+}
+
+extension Cardinal {
+    @inlinable
+    public init(_ value: Swift.Int) throws(Self.Error) {
+        guard value >= .zero else {
+            throw .negativeSource(value)
+        }
+        self.init(UInt(value))
+    }
+}

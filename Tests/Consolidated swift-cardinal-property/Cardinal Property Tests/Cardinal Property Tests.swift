@@ -54,14 +54,14 @@ struct `Cardinal properties use canonical arithmetic operations` {
 
     @Test
     func `The addition tag selects the canonical operation`() throws {
-        let tagged: Property<Cardinal.Add, Cardinal> = Cardinal(2).add
+        let tagged: Property<Cardinal.Addition, Cardinal> = Cardinal(2).add
         let canonical: Property<Addition, Cardinal> = tagged
         #expect(try canonical.exact(Cardinal(3)) == Cardinal(5))
     }
 
     @Test
     func `The subtraction tag selects the canonical operation`() throws {
-        let tagged: Property<Cardinal.Subtract, Cardinal> = Cardinal(5).subtract
+        let tagged: Property<Cardinal.Subtraction, Cardinal> = Cardinal(5).subtract
         let canonical: Property<Subtraction, Cardinal> = tagged
         #expect(try canonical.exact(Cardinal(3)) == Cardinal(2))
     }
