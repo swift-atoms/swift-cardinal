@@ -18,9 +18,6 @@ let package = Package(
     ],
     dependencies: [
 
-        .package(url: "https://github.com/swift-atoms/swift-comparison.git", branch: "main"),
-        .package(url: "https://github.com/swift-atoms/swift-equation.git", branch: "main"),
-        .package(url: "https://github.com/swift-atoms/swift-hash.git", branch: "main"),
 
         .package(url: "https://github.com/swift-atoms/swift-magnitude.git", branch: "main"),
         .package(
@@ -49,7 +46,6 @@ let package = Package(
         .target(
             name: "Cardinal",
             dependencies: [
-                .product(name: "Hash", package: "swift-hash"),
                 .product(name: "Magnitude", package: "swift-magnitude"),
                 .product(name: "Addition", package: "swift-addition"),
                 .product(name: "Subtraction", package: "swift-subtraction"),
@@ -88,33 +84,6 @@ let package = Package(
                 .target(name: "Cardinal Foundation Integration"),
             ],
             path: "Tests/Cardinal Tests"
-        ),
-        .testTarget(
-            name: "Consolidated Cardinal Comparison Tests",
-            dependencies: [
-
-                .target(name: "Cardinal"),
-                .product(name: "Comparison", package: "swift-comparison"),
-            ],
-            path: "Tests/Consolidated swift-cardinal-comparison"
-        ),
-        .testTarget(
-            name: "Consolidated Cardinal Equation Tests",
-            dependencies: [
-
-                .target(name: "Cardinal"),
-                .product(name: "Equation", package: "swift-equation"),
-            ],
-            path: "Tests/Consolidated swift-cardinal-equation"
-        ),
-        .testTarget(
-            name: "Consolidated Cardinal Hash Tests",
-            dependencies: [
-
-                .target(name: "Cardinal"),
-                .product(name: "Hash", package: "swift-hash"),
-            ],
-            path: "Tests/Consolidated swift-cardinal-hash"
         ),
         .testTarget(
             name: "Consolidated Cardinal Property Tests",
