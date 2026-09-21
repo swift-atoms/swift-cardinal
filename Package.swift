@@ -16,7 +16,12 @@ let package = Package(
         .library(name: "Cardinal Foundation Integration", targets: ["Cardinal Foundation Integration"]),
         .library(name: "Cardinal Test Support", targets: ["Cardinal Test Support"]),
     ],
+    traits: [
+        .trait(name: "Algebra", description: "Additive commutative monoid"),
+        .default(enabledTraits: ["Algebra"]),
+    ],
     dependencies: [
+        .package(url: "https://github.com/swift-atoms/swift-algebra.git", branch: "main"),
 
 
         .package(url: "https://github.com/swift-atoms/swift-magnitude.git", branch: "main"),
@@ -46,6 +51,7 @@ let package = Package(
         .target(
             name: "Cardinal",
             dependencies: [
+                .product(name: "Algebra", package: "swift-algebra", condition: .when(traits: ["Algebra"])),
                 .product(name: "Magnitude", package: "swift-magnitude"),
                 .product(name: "Addition", package: "swift-addition"),
                 .product(name: "Subtraction", package: "swift-subtraction"),
@@ -73,6 +79,7 @@ let package = Package(
         .testTarget(
             name: "Cardinal Tests",
             dependencies: [
+                .product(name: "Algebra", package: "swift-algebra", condition: .when(traits: ["Algebra"])),
                 .product(name: "Magnitude", package: "swift-magnitude"),
                 .target(name: "Cardinal"),
                 .product(name: "Addition", package: "swift-addition"),

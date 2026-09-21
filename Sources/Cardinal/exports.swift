@@ -4,3 +4,7 @@
 @_exported public import Property
 @_exported public import Subtraction
 @_exported public import Tagged
+
+#if Algebra
+@_exported public import Algebra
+#endif

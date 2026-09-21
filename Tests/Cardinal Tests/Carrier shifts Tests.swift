@@ -21,7 +21,7 @@ private enum Operation: String, CaseIterable, Sendable, Codable {
     case left, right, assignLeft, assignRight
 }
 
-@Suite(.timeLimit(.minutes(1)))
+@Suite(.serialized, .timeLimit(.minutes(1)))
 struct `Cardinal shifts preserve integer width boundaries` {
     @Test(arguments: Array(UInt(0)..<8))
     func `valid shifts match signed and unsigned integer operations`(amount: UInt) {

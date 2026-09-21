@@ -1,7 +1,7 @@
 import Cardinal
 import Testing
 
-@Suite(.timeLimit(.minutes(1)))
+@Suite(.serialized, .timeLimit(.minutes(1)))
 struct `Storage counts must be representable before use` {
     @Test(arguments: [
         "array-repeating", "contiguous-repeating", "array-capacity", "contiguous-capacity",
