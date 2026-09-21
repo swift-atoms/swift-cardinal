@@ -1,3 +1,4 @@
+#if Tagged
 public import Carrier
 
 @inlinable
@@ -35,3 +36,5 @@ public func >>= <RawValue: FixedWidthInteger>(
 ) {
     lhs = lhs >> rhs
 }
+
+#endif

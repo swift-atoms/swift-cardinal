@@ -1,3 +1,4 @@
+#if Tagged
 import Testing
 
 import Cardinal
@@ -75,3 +76,5 @@ extension `Spans preserve typed Cardinal counts through construction`.`Zero type
         }
     }
 }
+
+#endif

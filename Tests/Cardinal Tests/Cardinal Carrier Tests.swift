@@ -1,3 +1,4 @@
+#if Tagged
 import Addition
 import Cardinal
 import Carrier
@@ -50,3 +51,5 @@ func `shared operation identities preserve a carrier domain`() throws {
     #expect(seven == Count(Cardinal(7 as UInt)))
     #expect(three == Count(Cardinal(3 as UInt)))
 }
+
+#endif

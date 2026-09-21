@@ -1,3 +1,4 @@
+#if Tagged
 import Cardinal
 import Testing
 
@@ -7,3 +8,5 @@ func `saturating subtraction clamps at zero`() {
     let five = Cardinal(5 as UInt)
     #expect(three.subtract.saturating(five) == .zero)
 }
+
+#endif

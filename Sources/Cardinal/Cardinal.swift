@@ -16,6 +16,12 @@ extension Cardinal {
 extension Cardinal {
 
     @inlinable
+    public static var zero: Cardinal { Cardinal(UInt.zero) }
+
+    @inlinable
+    public static var one: Cardinal { Cardinal(UInt(1)) }
+
+    @inlinable
     public static var max: Cardinal { Cardinal(UInt.max) }
 }
 
@@ -23,8 +29,9 @@ extension Cardinal {
 
     @inlinable
     public static func + (lhs: Self, rhs: Self) -> Self {
-        do { return try lhs.add.exact(rhs) }
-        catch { preconditionFailure("Cardinal overflow in addition") }
+        let result = lhs.rawValue.addingReportingOverflow(rhs.rawValue)
+        precondition(!result.overflow, "Cardinal overflow in addition")
+        return Cardinal(result.partialValue)
     }
 
     @inlinable

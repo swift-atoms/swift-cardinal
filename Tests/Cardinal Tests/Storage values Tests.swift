@@ -1,3 +1,4 @@
+#if Tagged
 import Cardinal
 import Carrier
 import Tagged
@@ -180,3 +181,5 @@ private struct Count<Scope: ~Copyable & ~Escapable>: Carrier.`Protocol` {
         #expect(try maximum.subtract.exact(.one).rawValue == UInt.max - 1)
     }
 }
+
+#endif

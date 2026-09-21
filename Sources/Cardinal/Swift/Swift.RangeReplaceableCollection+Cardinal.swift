@@ -1,3 +1,4 @@
+#if Tagged
 public import Carrier
 
 extension Swift.RangeReplaceableCollection {
@@ -18,3 +19,5 @@ extension Swift.RangeReplaceableCollection {
         self.removeFirst(length)
     }
 }
+
+#endif

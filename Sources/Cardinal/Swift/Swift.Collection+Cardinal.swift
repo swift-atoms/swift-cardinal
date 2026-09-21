@@ -1,3 +1,4 @@
+#if Tagged
 public import Carrier
 
 extension Swift.Collection {
@@ -34,3 +35,5 @@ extension Swift.Collection {
         return self.dropLast(length)
     }
 }
+
+#endif

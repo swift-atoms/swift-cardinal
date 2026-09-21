@@ -17,8 +17,8 @@ let package = Package(
         .library(name: "Cardinal Test Support", targets: ["Cardinal Test Support"]),
     ],
     traits: [
-        .trait(name: "Algebra", description: "Additive commutative monoid"),
-        .default(enabledTraits: ["Algebra"]),
+        .trait(name: "Algebra", description: "Algebra integration"),
+        .trait(name: "Tagged", description: "Tagged integration"),
     ],
     dependencies: [
         .package(url: "https://github.com/swift-atoms/swift-algebra.git", branch: "main"),
@@ -52,12 +52,12 @@ let package = Package(
             name: "Cardinal",
             dependencies: [
                 .product(name: "Algebra", package: "swift-algebra", condition: .when(traits: ["Algebra"])),
-                .product(name: "Magnitude", package: "swift-magnitude"),
-                .product(name: "Addition", package: "swift-addition"),
-                .product(name: "Subtraction", package: "swift-subtraction"),
-                .product(name: "Tagged", package: "swift-tagged"),
-                .product(name: "Carrier", package: "swift-carrier"),
-                .product(name: "Property", package: "swift-property"),
+                .product(name: "Magnitude", package: "swift-magnitude", condition: .when(traits: ["Tagged"])),
+                .product(name: "Addition", package: "swift-addition", condition: .when(traits: ["Tagged"])),
+                .product(name: "Subtraction", package: "swift-subtraction", condition: .when(traits: ["Tagged"])),
+                .product(name: "Tagged", package: "swift-tagged", condition: .when(traits: ["Tagged"])),
+                .product(name: "Carrier", package: "swift-carrier", condition: .when(traits: ["Tagged"])),
+                .product(name: "Property", package: "swift-property", condition: .when(traits: ["Tagged"])),
             ],
             path: "Sources/Cardinal"
         ),
@@ -80,13 +80,13 @@ let package = Package(
             name: "Cardinal Tests",
             dependencies: [
                 .product(name: "Algebra", package: "swift-algebra", condition: .when(traits: ["Algebra"])),
-                .product(name: "Magnitude", package: "swift-magnitude"),
+                .product(name: "Magnitude", package: "swift-magnitude", condition: .when(traits: ["Tagged"])),
                 .target(name: "Cardinal"),
-                .product(name: "Addition", package: "swift-addition"),
-                .product(name: "Subtraction", package: "swift-subtraction"),
-                .product(name: "Property", package: "swift-property"),
-                .product(name: "Tagged", package: "swift-tagged"),
-                .product(name: "Carrier", package: "swift-carrier"),
+                .product(name: "Addition", package: "swift-addition", condition: .when(traits: ["Tagged"])),
+                .product(name: "Subtraction", package: "swift-subtraction", condition: .when(traits: ["Tagged"])),
+                .product(name: "Property", package: "swift-property", condition: .when(traits: ["Tagged"])),
+                .product(name: "Tagged", package: "swift-tagged", condition: .when(traits: ["Tagged"])),
+                .product(name: "Carrier", package: "swift-carrier", condition: .when(traits: ["Tagged"])),
                 .target(name: "Cardinal Test Support"),
                 .target(name: "Cardinal Foundation Integration"),
             ],
@@ -97,15 +97,15 @@ let package = Package(
             dependencies: [
 
                 .target(name: "Cardinal"),
-                .product(name: "Addition", package: "swift-addition"),
-                .product(name: "Subtraction", package: "swift-subtraction"),
-                .product(name: "Property", package: "swift-property"),
+                .product(name: "Addition", package: "swift-addition", condition: .when(traits: ["Tagged"])),
+                .product(name: "Subtraction", package: "swift-subtraction", condition: .when(traits: ["Tagged"])),
+                .product(name: "Property", package: "swift-property", condition: .when(traits: ["Tagged"])),
             ],
             path: "Tests/Consolidated swift-cardinal-property"
         ),
         .testTarget(
             name: "Consolidated Cardinal Carrier Tests",
-            dependencies: [.target(name: "Cardinal"), .product(name: "Carrier", package: "swift-carrier")],
+            dependencies: [.target(name: "Cardinal"), .product(name: "Carrier", package: "swift-carrier", condition: .when(traits: ["Tagged"]))],
             path: "Tests/Consolidated swift-cardinal-carrier"
         ),
     ],

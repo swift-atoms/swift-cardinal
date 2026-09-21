@@ -1,3 +1,4 @@
+#if Tagged
 public import Carrier
 
 extension Swift.String {
@@ -10,3 +11,5 @@ extension Swift.String {
         self.init(repeating: repeatedValue, count: length)
     }
 }
+
+#endif

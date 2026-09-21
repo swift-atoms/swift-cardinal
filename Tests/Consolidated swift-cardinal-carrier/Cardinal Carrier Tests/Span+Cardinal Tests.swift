@@ -1,3 +1,4 @@
+#if Tagged
 import Testing
 
 import Cardinal
@@ -71,3 +72,5 @@ extension `Cardinal span compatibility` {
         }
     }
 }
+
+#endif

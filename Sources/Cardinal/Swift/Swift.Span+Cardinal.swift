@@ -1,3 +1,4 @@
+#if Tagged
 public import Carrier
 
 extension Swift.Span where Element: ~Copyable {
@@ -54,3 +55,5 @@ extension Swift.Span where Element: ~Copyable {
         return self.extracting(droppingLast: length)
     }
 }
+
+#endif

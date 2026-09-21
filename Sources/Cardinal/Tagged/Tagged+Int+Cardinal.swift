@@ -1,3 +1,4 @@
+#if Tagged
 public import Tagged
 
 extension Tagged::Tagged where Underlying == Cardinal, Tag: ~Copyable & ~Escapable {
@@ -7,3 +8,5 @@ extension Tagged::Tagged where Underlying == Cardinal, Tag: ~Copyable & ~Escapab
         self.init(try Cardinal(int))
     }
 }
+
+#endif

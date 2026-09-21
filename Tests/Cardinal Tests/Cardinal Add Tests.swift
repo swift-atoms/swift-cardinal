@@ -1,3 +1,4 @@
+#if Tagged
 import Cardinal
 import Testing
 
@@ -7,3 +8,5 @@ func `saturating addition clamps at the maximum`() {
     let one = Cardinal(1 as UInt)
     #expect(maximum.add.saturating(one) == maximum)
 }
+
+#endif

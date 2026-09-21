@@ -1,3 +1,4 @@
+#if Tagged
 import Cardinal
 import Testing
 
@@ -95,3 +96,5 @@ private func perform<Value: FixedWidthInteger>(
     }
     return raw
 }
+
+#endif

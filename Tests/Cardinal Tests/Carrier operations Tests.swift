@@ -1,3 +1,4 @@
+#if Tagged
 import Cardinal
 import Testing
 
@@ -129,3 +130,5 @@ private enum InitializerFailure: Swift.Error { case element }
         #expect(deaths.count == 1)
     }
 }
+
+#endif

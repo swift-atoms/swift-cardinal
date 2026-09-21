@@ -1,3 +1,4 @@
+#if Tagged
 import Cardinal
 import Testing
 
@@ -81,3 +82,5 @@ private struct RecordingCollection: RangeReplaceableCollection {
         values.replaceSubrange(subrange, with: newElements)
     }
 }
+
+#endif

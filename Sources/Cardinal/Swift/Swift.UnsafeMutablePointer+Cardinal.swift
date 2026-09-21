@@ -1,3 +1,4 @@
+#if Tagged
 public import Carrier
 
 extension Swift.UnsafeMutablePointer {
@@ -27,3 +28,5 @@ extension Swift.UnsafeMutablePointer where Pointee: ~Copyable {
         unsafe self.moveInitialize(from: source, count: length)
     }
 }
+
+#endif

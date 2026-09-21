@@ -1,3 +1,4 @@
+#if Tagged
 public import Addition
 public import Carrier
 public import Property
@@ -83,3 +84,5 @@ where Tag == Subtraction, Base: Carrier::Carrier.`Protocol`, Base.Underlying == 
         try exact(other)
     }
 }
+
+#endif

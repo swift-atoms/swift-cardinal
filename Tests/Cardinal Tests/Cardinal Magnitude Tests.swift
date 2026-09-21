@@ -1,3 +1,4 @@
+#if Tagged
 import Cardinal
 import Magnitude
 import Testing
@@ -24,3 +25,5 @@ func `magnitude arithmetic delegates while preserving the value role`() throws {
     #expect(maximum.add.saturating(three) == maximum)
     #expect(throws: Cardinal.Error.overflow) { try maximum.add.exact(three) }
 }
+
+#endif

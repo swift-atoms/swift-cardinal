@@ -1,3 +1,4 @@
+#if Tagged
 public import Addition
 public import Magnitude
 public import Property
@@ -121,3 +122,5 @@ extension Property {
         base.map { $0.subtract.saturating(other.underlying) }
     }
 }
+
+#endif

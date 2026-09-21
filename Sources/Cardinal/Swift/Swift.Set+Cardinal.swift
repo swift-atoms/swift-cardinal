@@ -1,3 +1,4 @@
+#if Tagged
 public import Carrier
 
 extension Swift.Set {
@@ -18,3 +19,5 @@ extension Swift.Set {
         self.init(minimumCapacity: capacity)
     }
 }
+
+#endif

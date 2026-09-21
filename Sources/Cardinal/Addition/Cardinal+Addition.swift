@@ -1,3 +1,4 @@
+#if Tagged
 public import Addition
 public import Property
 
@@ -18,3 +19,5 @@ extension Property where Tag == Addition, Base == Cardinal {
         Cardinal(Addition.saturating(base.rawValue, other.rawValue))
     }
 }
+
+#endif

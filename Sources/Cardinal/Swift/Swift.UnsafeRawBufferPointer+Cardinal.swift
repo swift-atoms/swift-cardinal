@@ -1,3 +1,4 @@
+#if Tagged
 public import Carrier
 
 extension Swift.UnsafeRawBufferPointer {
@@ -10,3 +11,5 @@ extension Swift.UnsafeRawBufferPointer {
         unsafe self.init(start: start, count: length)
     }
 }
+
+#endif

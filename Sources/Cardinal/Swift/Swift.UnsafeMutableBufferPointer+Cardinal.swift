@@ -1,3 +1,4 @@
+#if Tagged
 public import Carrier
 
 extension Swift.UnsafeMutableBufferPointer where Element: ~Copyable {
@@ -18,3 +19,5 @@ extension Swift.UnsafeMutableBufferPointer where Element: ~Copyable {
         return Self.allocate(capacity: length)
     }
 }
+
+#endif

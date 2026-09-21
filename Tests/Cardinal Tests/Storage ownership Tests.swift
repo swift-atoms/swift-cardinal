@@ -1,3 +1,4 @@
+#if Tagged
 import Cardinal
 import Tagged
 import Testing
@@ -87,3 +88,5 @@ private struct Token: ~Copyable {
         #expect(deaths.ids.sorted() == [1, 2])
     }
 }
+
+#endif

@@ -1,3 +1,4 @@
+#if Tagged
 public import Carrier
 
 extension Swift.BidirectionalCollection where Self: RangeReplaceableCollection {
@@ -10,3 +11,5 @@ extension Swift.BidirectionalCollection where Self: RangeReplaceableCollection {
         self.removeLast(length)
     }
 }
+
+#endif

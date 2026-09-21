@@ -1,3 +1,4 @@
+#if Tagged
 import struct Cardinal.Cardinal
 import Addition
 import Subtraction
@@ -66,3 +67,5 @@ struct `Cardinal properties use canonical arithmetic operations` {
         #expect(try canonical.exact(Cardinal(3)) == Cardinal(2))
     }
 }
+
+#endif

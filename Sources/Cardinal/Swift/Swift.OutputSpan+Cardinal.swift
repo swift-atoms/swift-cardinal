@@ -1,3 +1,4 @@
+#if Tagged
 public import Carrier
 
 extension Swift.OutputSpan where Element: ~Copyable {
@@ -42,3 +43,5 @@ extension Swift.OutputSpan {
         append(repeating: repeatedValue, count: length)
     }
 }
+
+#endif

@@ -1,3 +1,4 @@
+#if Tagged
 public import Carrier
 
 extension Swift.ContiguousArray {
@@ -37,3 +38,5 @@ extension Swift.ContiguousArray {
         )
     }
 }
+
+#endif

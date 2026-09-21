@@ -1,3 +1,4 @@
+#if Tagged
 import Cardinal
 import Testing
 
@@ -165,3 +166,5 @@ private func performMemory(_ operation: String, count: Cardinal) {
         }
     }
 }
+
+#endif

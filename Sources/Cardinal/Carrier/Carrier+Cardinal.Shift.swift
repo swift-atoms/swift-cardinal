@@ -1,3 +1,4 @@
+#if Tagged
 public import Carrier
 
 @_disfavoredOverload
@@ -35,3 +36,5 @@ public func >>= <C: Carrier::Carrier.`Protocol`>(
 ) where C.Underlying: FixedWidthInteger {
     lhs = lhs >> rhs
 }
+
+#endif
