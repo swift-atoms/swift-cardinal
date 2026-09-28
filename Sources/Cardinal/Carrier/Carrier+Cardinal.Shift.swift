@@ -1,4 +1,3 @@
-#if Tagged
 public import Carrier
 
 @_disfavoredOverload
@@ -37,4 +36,3 @@ public func >>= <C: Carrier::Carrier.`Protocol`>(
     lhs = lhs >> rhs
 }
 
-#endif

@@ -1,4 +1,3 @@
-#if Tagged
 public import Carrier
 
 extension Swift.Dictionary {
@@ -20,4 +19,3 @@ extension Swift.Dictionary {
     }
 }
 
-#endif

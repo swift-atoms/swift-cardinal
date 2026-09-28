@@ -1,4 +1,3 @@
-#if Tagged
 public import Addition
 public import Magnitude
 public import Property
@@ -123,4 +122,3 @@ extension Property {
     }
 }
 
-#endif

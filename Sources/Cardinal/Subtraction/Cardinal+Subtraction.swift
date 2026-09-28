@@ -1,4 +1,3 @@
-#if Tagged
 public import Property
 public import Subtraction
 
@@ -23,4 +22,3 @@ extension Property::Property where Tag == Subtraction, Base == Cardinal {
     }
 }
 
-#endif

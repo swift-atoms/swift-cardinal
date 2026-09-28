@@ -1,4 +1,3 @@
-#if Tagged
 public import Carrier
 
 extension Swift.UnsafeMutablePointer {
@@ -29,4 +28,3 @@ extension Swift.UnsafeMutablePointer where Pointee: ~Copyable {
     }
 }
 
-#endif

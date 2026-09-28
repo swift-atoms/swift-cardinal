@@ -1,4 +1,3 @@
-#if Tagged
 public import Carrier
 
 extension Swift.UInt32 {
@@ -9,4 +8,3 @@ extension Swift.UInt32 {
     }
 }
 
-#endif

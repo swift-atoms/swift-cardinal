@@ -1,4 +1,3 @@
-#if Tagged
 public import Carrier
 
 extension Swift.String {
@@ -12,4 +11,3 @@ extension Swift.String {
     }
 }
 
-#endif

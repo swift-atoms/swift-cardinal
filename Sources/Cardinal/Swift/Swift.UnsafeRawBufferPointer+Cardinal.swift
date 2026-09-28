@@ -1,4 +1,3 @@
-#if Tagged
 public import Carrier
 
 extension Swift.UnsafeRawBufferPointer {
@@ -12,4 +11,3 @@ extension Swift.UnsafeRawBufferPointer {
     }
 }
 
-#endif

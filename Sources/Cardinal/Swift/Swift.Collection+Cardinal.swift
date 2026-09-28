@@ -1,4 +1,3 @@
-#if Tagged
 public import Carrier
 
 extension Swift.Collection {
@@ -36,4 +35,3 @@ extension Swift.Collection {
     }
 }
 
-#endif

@@ -1,4 +1,3 @@
-#if Tagged
 public import Addition
 public import Property
 
@@ -20,4 +19,3 @@ extension Property where Tag == Addition, Base == Cardinal {
     }
 }
 
-#endif

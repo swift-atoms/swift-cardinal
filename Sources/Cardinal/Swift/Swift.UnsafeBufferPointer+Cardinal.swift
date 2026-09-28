@@ -1,4 +1,3 @@
-#if Tagged
 public import Carrier
 
 extension Swift.UnsafeBufferPointer where Element: ~Copyable {
@@ -12,4 +11,3 @@ extension Swift.UnsafeBufferPointer where Element: ~Copyable {
     }
 }
 
-#endif
