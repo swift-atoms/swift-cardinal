@@ -1,6 +1,6 @@
 public import Carrier
 
-extension Swift.UInt32 {
+extension Swift::UInt32 {
 
     @inlinable
     public init(_ cardinal: some Carrier::Carrier.`Protocol`<Cardinal>) {

@@ -1,6 +1,6 @@
 public import Carrier
 
-extension Swift.MutableSpan where Element: ~Copyable {
+extension Swift::MutableSpan where Element: ~Copyable {
 
     @unsafe
     @_lifetime(borrow start)

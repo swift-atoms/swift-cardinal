@@ -1,6 +1,6 @@
 public import Carrier
 
-extension Swift.Span where Element: ~Copyable {
+extension Swift::Span where Element: ~Copyable {
 
     @unsafe
     @_lifetime(borrow start)

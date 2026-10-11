@@ -1,6 +1,6 @@
 public import Tagged
 
-extension Swift.Int {
+extension Swift::Int {
 
     @inlinable
     public init<Tag: ~Copyable & ~Escapable>(_ count: Tagged::Tagged<Tag, Cardinal>) throws(Cardinal.Error)
@@ -21,13 +21,13 @@ extension Swift.Int {
 
 public import Carrier
 
-extension Swift.Int {
+extension Swift::Int {
 
     @inlinable
     public init(
         _ cardinal: Cardinal
     ) throws(Cardinal.Error) {
-        guard cardinal.rawValue <= Swift.UInt(Swift.Int.max) else {
+        guard cardinal.rawValue <= Swift::UInt(Swift::Int.max) else {
             throw .overflow
         }
         self = Int(cardinal.rawValue)

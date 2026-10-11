@@ -15,12 +15,15 @@ private struct Word: Carrier::Carrier.`Protocol` {
 }
 
 private struct Count<Scope>: Carrier::Carrier.`Protocol`, Equatable {
-    typealias Domain = Scope
     let underlying: Cardinal
 
     init(_ underlying: Cardinal) {
         self.underlying = underlying
     }
+}
+
+extension Count {
+    typealias Domain = Scope
 }
 
 private enum Files {}

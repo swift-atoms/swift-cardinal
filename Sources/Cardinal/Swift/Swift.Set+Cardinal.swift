@@ -1,6 +1,6 @@
 public import Carrier
 
-extension Swift.Set {
+extension Swift::Set {
 
     @inlinable
     public mutating func reserveCapacity(_ minimumCapacity: some Carrier::Carrier.`Protocol`<Cardinal>) {

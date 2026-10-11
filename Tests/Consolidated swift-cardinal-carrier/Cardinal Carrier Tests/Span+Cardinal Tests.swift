@@ -11,7 +11,7 @@ extension `Cardinal span compatibility` {
     func `Span typed-Cardinal init reads the underlying buffer`() {
         let values: [Int] = [10, 20, 30]
         values.withUnsafeBufferPointer { buffer in
-            let span = unsafe Swift.Span(
+            let span = unsafe Swift::Span(
                 _unsafeStart: buffer.baseAddress!,
                 count: Cardinal(3)
             )
@@ -26,7 +26,7 @@ extension `Cardinal span compatibility` {
     func `MutableSpan typed-Cardinal init reads and mutates the underlying buffer`() {
         var values: [Int] = [1, 2, 3]
         values.withUnsafeMutableBufferPointer { buffer in
-            var span = unsafe Swift.MutableSpan(
+            var span = unsafe Swift::MutableSpan(
                 _unsafeStart: buffer.baseAddress!,
                 count: Cardinal(3)
             )
@@ -44,7 +44,7 @@ extension `Cardinal span compatibility` {
     func `Span typed-Cardinal init with zero count is empty`() {
         let values: [Int] = [7]
         values.withUnsafeBufferPointer { buffer in
-            let span = unsafe Swift.Span(
+            let span = unsafe Swift::Span(
                 _unsafeStart: buffer.baseAddress!,
                 count: .zero
             )
@@ -60,7 +60,7 @@ extension `Cardinal span compatibility` {
     func `MutableSpan typed-Cardinal init with zero count is empty`() {
         var values: [Int] = [7]
         values.withUnsafeMutableBufferPointer { buffer in
-            let span = unsafe Swift.MutableSpan(
+            let span = unsafe Swift::MutableSpan(
                 _unsafeStart: buffer.baseAddress!,
                 count: .zero
             )

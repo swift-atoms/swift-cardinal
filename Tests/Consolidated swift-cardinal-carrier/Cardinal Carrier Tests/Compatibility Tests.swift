@@ -6,12 +6,15 @@ import Testing
 private enum Elements {}
 
 private struct Count<Scope>: Carrier::Carrier.`Protocol`, Equatable {
-    typealias Domain = Scope
     let underlying: Cardinal
 
     init(_ underlying: Cardinal) {
         self.underlying = underlying
     }
+}
+
+extension Count {
+    typealias Domain = Scope
 }
 
 private struct Word<Value: FixedWidthInteger>: Carrier::Carrier.`Protocol` {
@@ -32,7 +35,7 @@ private final class Element {
     deinit { deaths.count += 1 }
 }
 
-private enum InitializerFailure: Swift.Error { case element }
+private enum InitializerFailure: Swift::Error { case element }
 
 @Suite struct `Cardinal carrier compatibility` {
     @Test

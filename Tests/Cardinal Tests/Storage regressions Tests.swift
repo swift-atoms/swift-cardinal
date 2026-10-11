@@ -12,7 +12,7 @@ private final class Element {
     deinit { deaths.count += 1 }
 }
 
-private enum ElementFailure: Swift.Error { case element }
+private enum ElementFailure: Swift::Error { case element }
 
 @Suite(.timeLimit(.minutes(1)))
 struct `Count adapters preserve storage and ownership boundaries` {
@@ -71,6 +71,9 @@ struct `Count adapters preserve storage and ownership boundaries` {
 private struct RecordingCollection: RangeReplaceableCollection {
     var values: [Int] = []
     var requestedCapacity: Int?
+}
+
+extension RecordingCollection {
     var startIndex: Int { values.startIndex }
     var endIndex: Int { values.endIndex }
     func index(after i: Int) -> Int { i + 1 }

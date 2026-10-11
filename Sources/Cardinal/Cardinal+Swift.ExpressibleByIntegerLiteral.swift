@@ -3,7 +3,7 @@ import Synchronization
 #endif
 
 
-extension Cardinal: Swift.ExpressibleByIntegerLiteral {
+extension Cardinal: Swift::ExpressibleByIntegerLiteral {
 
     @_disfavoredOverload
     @inlinable

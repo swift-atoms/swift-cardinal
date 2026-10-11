@@ -1,6 +1,6 @@
 public import Carrier
 
-extension Swift.UnsafeMutablePointer {
+extension Swift::UnsafeMutablePointer {
 
     @inlinable
     public func initialize(
@@ -14,7 +14,7 @@ extension Swift.UnsafeMutablePointer {
     }
 }
 
-extension Swift.UnsafeMutablePointer where Pointee: ~Copyable {
+extension Swift::UnsafeMutablePointer where Pointee: ~Copyable {
 
     @inlinable
     public func moveInitialize(

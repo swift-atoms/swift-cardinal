@@ -1,6 +1,6 @@
 public import Carrier
 
-extension Swift.Collection {
+extension Swift::Collection {
 
     @inlinable
     public __consuming func prefix(_ maxLength: some Carrier::Carrier.`Protocol`<Cardinal>) -> SubSequence {

@@ -3,7 +3,7 @@ public struct Cardinal {
     public let rawValue: UInt
 }
 
-extension Cardinal: Swift.Sendable {}
+extension Cardinal: Swift::Sendable {}
 
 extension Cardinal {
 
@@ -74,7 +74,7 @@ extension Cardinal {
 
 extension Cardinal {
     @inlinable
-    public init(_ value: Swift.Int) throws(Self.Error) {
+    public init(_ value: Swift::Int) throws(Self.Error) {
         guard value >= .zero else {
             throw .negativeSource(value)
         }

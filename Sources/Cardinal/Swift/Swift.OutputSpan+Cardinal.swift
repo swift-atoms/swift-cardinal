@@ -1,6 +1,6 @@
 public import Carrier
 
-extension Swift.OutputSpan where Element: ~Copyable {
+extension Swift::OutputSpan where Element: ~Copyable {
 
     @unsafe
     @inlinable
@@ -28,7 +28,7 @@ extension Swift.OutputSpan where Element: ~Copyable {
     }
 }
 
-extension Swift.OutputSpan {
+extension Swift::OutputSpan {
 
     @inlinable
     @_lifetime(self: copy self)

@@ -1,6 +1,6 @@
 public import Carrier
 
-extension Swift.ContiguousArray {
+extension Swift::ContiguousArray {
 
     @inlinable
     public init(repeating repeatedValue: Element, count: some Carrier::Carrier.`Protocol`<Cardinal>) {
@@ -11,7 +11,7 @@ extension Swift.ContiguousArray {
     }
 
     @inlinable
-    public init<C: Carrier::Carrier.`Protocol`<Cardinal>, E: Swift.Error>(
+    public init<C: Carrier::Carrier.`Protocol`<Cardinal>, E: Swift::Error>(
         unsafeUninitializedCapacity: C,
         initializingWith initializer: (
             _ buffer: inout UnsafeMutableBufferPointer<Element>,

@@ -58,7 +58,10 @@ let package = Package(
                 .product(name: "Carrier", package: "swift-carrier"),
                 .product(name: "Property", package: "swift-property"),
             ],
-            path: "Sources/Cardinal"
+            path: "Sources/Cardinal",
+            swiftSettings: [
+                .define("SYNCHRONIZATION_AVAILABLE", .when(platforms: [.macOS, .iOS, .tvOS, .watchOS, .visionOS, .linux, .windows])),
+            ]
         ),
         
         .target(
@@ -87,7 +90,6 @@ let package = Package(
                 .product(name: "Tagged", package: "swift-tagged"),
                 .product(name: "Carrier", package: "swift-carrier"),
                 .target(name: "Cardinal Test Support"),
-                .target(name: "Cardinal Foundation Integration"),
             ],
             path: "Tests/Cardinal Tests"
         ),
@@ -111,7 +113,7 @@ let package = Package(
     swiftLanguageModes: [.v6]
 )
 
-for target in package.targets where ![.system, .binary, .plugin].contains(target.type) {
+for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
     target.swiftSettings = (target.swiftSettings ?? []) + [
         .strictMemorySafety(),
         .enableUpcomingFeature("ExistentialAny"),
@@ -120,7 +122,6 @@ for target in package.targets where ![.system, .binary, .plugin].contains(target
         .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
         .enableUpcomingFeature("InferIsolatedConformances"),
         .enableExperimentalFeature("Lifetimes"),
-        .define("SYNCHRONIZATION_AVAILABLE", .when(platforms: [.macOS, .iOS, .tvOS, .watchOS, .visionOS, .linux, .windows])),
         .treatAllWarnings(as: .error),
     ]
 }

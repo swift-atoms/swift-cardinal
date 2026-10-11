@@ -7,9 +7,12 @@ import Testing
 private struct StorageDomain: ~Copyable, ~Escapable {}
 
 private struct Count<Scope: ~Copyable & ~Escapable>: Carrier.`Protocol` {
-    typealias Domain = Scope
     let underlying: Cardinal
     init(_ underlying: Cardinal) { self.underlying = underlying }
+}
+
+extension Count where Scope: ~Copyable & ~Escapable {
+    typealias Domain = Scope
 }
 
 @Suite struct `Representable storage counts retain existing behavior` {

@@ -61,7 +61,7 @@ struct `Storage counts must be representable before use` {
     }
 }
 
-private enum InitializerFailure: Swift.Error { case element }
+private enum InitializerFailure: Swift::Error { case element }
 
 private func perform(_ operation: String, count: Cardinal) {
     var values = [10, 20]
