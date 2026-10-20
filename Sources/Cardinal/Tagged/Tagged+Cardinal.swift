@@ -7,4 +7,3 @@ extension Tagged::Tagged where Underlying == Cardinal, Tag: ~Copyable & ~Escapab
         self.init(Cardinal(uint))
     }
 }
-

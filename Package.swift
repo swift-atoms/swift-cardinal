@@ -13,15 +13,17 @@ let package = Package(
     products: [
         .library(name: "Cardinal", targets: ["Cardinal"]),
 
-        .library(name: "Cardinal Foundation Integration", targets: ["Cardinal Foundation Integration"]),
+        .library(
+            name: "Cardinal Foundation Integration",
+            targets: ["Cardinal Foundation Integration"]
+        ),
         .library(name: "Cardinal Test Support", targets: ["Cardinal Test Support"]),
     ],
     traits: [
-        .trait(name: "Algebra", description: "Algebra integration"),
+        .trait(name: "Algebra", description: "Algebra integration")
     ],
     dependencies: [
         .package(url: "https://github.com/swift-atoms/swift-algebra.git", branch: "main"),
-
 
         .package(url: "https://github.com/swift-atoms/swift-magnitude.git", branch: "main"),
         .package(
@@ -50,7 +52,11 @@ let package = Package(
         .target(
             name: "Cardinal",
             dependencies: [
-                .product(name: "Algebra", package: "swift-algebra", condition: .when(traits: ["Algebra"])),
+                .product(
+                    name: "Algebra",
+                    package: "swift-algebra",
+                    condition: .when(traits: ["Algebra"])
+                ),
                 .product(name: "Magnitude", package: "swift-magnitude"),
                 .product(name: "Addition", package: "swift-addition"),
                 .product(name: "Subtraction", package: "swift-subtraction"),
@@ -60,28 +66,35 @@ let package = Package(
             ],
             path: "Sources/Cardinal",
             swiftSettings: [
-                .define("SYNCHRONIZATION_AVAILABLE", .when(platforms: [.macOS, .iOS, .tvOS, .watchOS, .visionOS, .linux, .windows])),
+                .define(
+                    "SYNCHRONIZATION_AVAILABLE",
+                    .when(platforms: [.macOS, .iOS, .tvOS, .watchOS, .visionOS, .linux, .windows])
+                )
             ]
         ),
-        
+
         .target(
             name: "Cardinal Foundation Integration",
             dependencies: [
-                .target(name: "Cardinal"),
+                .target(name: "Cardinal")
             ],
             path: "Sources/Cardinal Foundation Integration"
         ),
         .target(
             name: "Cardinal Test Support",
             dependencies: [
-                .target(name: "Cardinal"),
+                .target(name: "Cardinal")
             ],
             path: "Tests/Support"
         ),
         .testTarget(
             name: "Cardinal Tests",
             dependencies: [
-                .product(name: "Algebra", package: "swift-algebra", condition: .when(traits: ["Algebra"])),
+                .product(
+                    name: "Algebra",
+                    package: "swift-algebra",
+                    condition: .when(traits: ["Algebra"])
+                ),
                 .product(name: "Magnitude", package: "swift-magnitude"),
                 .target(name: "Cardinal"),
                 .product(name: "Addition", package: "swift-addition"),
@@ -106,7 +119,9 @@ let package = Package(
         ),
         .testTarget(
             name: "Consolidated Cardinal Carrier Tests",
-            dependencies: [.target(name: "Cardinal"), .product(name: "Carrier", package: "swift-carrier")],
+            dependencies: [
+                .target(name: "Cardinal"), .product(name: "Carrier", package: "swift-carrier"),
+            ],
             path: "Tests/Consolidated swift-cardinal-carrier"
         ),
     ],
@@ -114,14 +129,15 @@ let package = Package(
 )
 
 for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
-    target.swiftSettings = (target.swiftSettings ?? []) + [
-        .strictMemorySafety(),
-        .enableUpcomingFeature("ExistentialAny"),
-        .enableUpcomingFeature("InternalImportsByDefault"),
-        .enableUpcomingFeature("MemberImportVisibility"),
-        .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
-        .enableUpcomingFeature("InferIsolatedConformances"),
-        .enableExperimentalFeature("Lifetimes"),
-        .treatAllWarnings(as: .error),
-    ]
+    target.swiftSettings =
+        (target.swiftSettings ?? []) + [
+            .strictMemorySafety(),
+            .enableUpcomingFeature("ExistentialAny"),
+            .enableUpcomingFeature("InternalImportsByDefault"),
+            .enableUpcomingFeature("MemberImportVisibility"),
+            .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
+            .enableUpcomingFeature("InferIsolatedConformances"),
+            .enableExperimentalFeature("Lifetimes"),
+            .treatAllWarnings(as: .error),
+        ]
 }

@@ -10,4 +10,3 @@ extension Swift::UnsafeRawBufferPointer {
         unsafe self.init(start: start, count: length)
     }
 }
-

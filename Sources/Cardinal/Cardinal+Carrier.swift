@@ -83,4 +83,3 @@ where Tag == Subtraction, Base: Carrier::Carrier.`Protocol`, Base.Underlying == 
         try exact(other)
     }
 }
-

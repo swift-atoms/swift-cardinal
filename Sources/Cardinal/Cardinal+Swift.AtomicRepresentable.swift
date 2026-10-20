@@ -1,7 +1,7 @@
 #if SYNCHRONIZATION_AVAILABLE
-public import Synchronization
+    public import Synchronization
 
-extension Cardinal: AtomicRepresentable {
+    extension Cardinal: AtomicRepresentable {
 
         public typealias AtomicRepresentation = UInt.AtomicRepresentation
 

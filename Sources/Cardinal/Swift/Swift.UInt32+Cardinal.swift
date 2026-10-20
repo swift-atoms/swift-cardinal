@@ -7,4 +7,3 @@ extension Swift::UInt32 {
         self = UInt32(cardinal.underlying.rawValue)
     }
 }
-

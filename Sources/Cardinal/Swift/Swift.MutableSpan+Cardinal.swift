@@ -20,7 +20,9 @@ extension Swift::MutableSpan where Element: ~Copyable {
 
     @inlinable
     @_lifetime(&self)
-    public mutating func extracting(first maxLength: some Carrier::Carrier.`Protocol`<Cardinal>) -> Self {
+    public mutating func extracting(
+        first maxLength: some Carrier::Carrier.`Protocol`<Cardinal>
+    ) -> Self {
         guard let length = try? Int(maxLength.underlying) else {
             preconditionFailure("Length is not representable as Int")
         }
@@ -29,7 +31,9 @@ extension Swift::MutableSpan where Element: ~Copyable {
 
     @inlinable
     @_lifetime(&self)
-    public mutating func extracting(droppingFirst k: some Carrier::Carrier.`Protocol`<Cardinal>) -> Self {
+    public mutating func extracting(
+        droppingFirst k: some Carrier::Carrier.`Protocol`<Cardinal>
+    ) -> Self {
         guard let length = try? Int(k.underlying) else {
             preconditionFailure("Count is not representable as Int")
         }
@@ -38,7 +42,9 @@ extension Swift::MutableSpan where Element: ~Copyable {
 
     @inlinable
     @_lifetime(&self)
-    public mutating func extracting(last maxLength: some Carrier::Carrier.`Protocol`<Cardinal>) -> Self {
+    public mutating func extracting(
+        last maxLength: some Carrier::Carrier.`Protocol`<Cardinal>
+    ) -> Self {
         guard let length = try? Int(maxLength.underlying) else {
             preconditionFailure("Length is not representable as Int")
         }
@@ -47,11 +53,12 @@ extension Swift::MutableSpan where Element: ~Copyable {
 
     @inlinable
     @_lifetime(&self)
-    public mutating func extracting(droppingLast k: some Carrier::Carrier.`Protocol`<Cardinal>) -> Self {
+    public mutating func extracting(
+        droppingLast k: some Carrier::Carrier.`Protocol`<Cardinal>
+    ) -> Self {
         guard let length = try? Int(k.underlying) else {
             preconditionFailure("Count is not representable as Int")
         }
         return self._mutatingExtracting(droppingLast: length)
     }
 }
-

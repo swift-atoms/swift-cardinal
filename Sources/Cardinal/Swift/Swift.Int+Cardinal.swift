@@ -1,10 +1,12 @@
+public import Carrier
 public import Tagged
 
 extension Swift::Int {
 
     @inlinable
-    public init<Tag: ~Copyable & ~Escapable>(_ count: Tagged::Tagged<Tag, Cardinal>) throws(Cardinal.Error)
-    {
+    public init<Tag: ~Copyable & ~Escapable>(
+        _ count: Tagged::Tagged<Tag, Cardinal>
+    ) throws(Cardinal.Error) {
         self = try Int(count.underlying)
     }
 
@@ -18,8 +20,6 @@ extension Swift::Int {
         self = Int(clamping: count.underlying)
     }
 }
-
-public import Carrier
 
 extension Swift::Int {
 
@@ -48,4 +48,3 @@ extension Swift::Int {
         self = Int(clamping: cardinal.rawValue)
     }
 }
-

@@ -9,8 +9,9 @@ extension Cardinal {
 extension Property where Tag == Addition, Base == Cardinal {
     @inlinable
     public func exact(_ other: Base) throws(Cardinal.Error) -> Base {
-        do { return Cardinal(try Addition.exact(base.rawValue, other.rawValue)) }
-        catch { throw .overflow }
+        do { return Cardinal(try Addition.exact(base.rawValue, other.rawValue)) } catch {
+            throw .overflow
+        }
     }
 
     @inlinable
@@ -18,4 +19,3 @@ extension Property where Tag == Addition, Base == Cardinal {
         Cardinal(Addition.saturating(base.rawValue, other.rawValue))
     }
 }
-

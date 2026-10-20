@@ -3,7 +3,8 @@ public import Carrier
 extension Swift::ContiguousArray {
 
     @inlinable
-    public init(repeating repeatedValue: Element, count: some Carrier::Carrier.`Protocol`<Cardinal>) {
+    public init(repeating repeatedValue: Element, count: some Carrier::Carrier.`Protocol`<Cardinal>)
+    {
         guard let length = try? Int(count.underlying) else {
             preconditionFailure("Array count is not representable as Int")
         }
@@ -37,4 +38,3 @@ extension Swift::ContiguousArray {
         )
     }
 }
-

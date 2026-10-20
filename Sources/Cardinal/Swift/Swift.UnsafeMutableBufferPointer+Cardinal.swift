@@ -3,7 +3,10 @@ public import Carrier
 extension Swift::UnsafeMutableBufferPointer where Element: ~Copyable {
 
     @inlinable
-    public init(start: UnsafeMutablePointer<Element>?, count: some Carrier::Carrier.`Protocol`<Cardinal>) {
+    public init(
+        start: UnsafeMutablePointer<Element>?,
+        count: some Carrier::Carrier.`Protocol`<Cardinal>
+    ) {
         guard let length = try? Int(count.underlying) else {
             preconditionFailure("Count is not representable as Int")
         }
@@ -18,4 +21,3 @@ extension Swift::UnsafeMutableBufferPointer where Element: ~Copyable {
         return Self.allocate(capacity: length)
     }
 }
-

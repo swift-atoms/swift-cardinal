@@ -27,4 +27,3 @@ extension Swift::UnsafeMutablePointer where Pointee: ~Copyable {
         unsafe self.moveInitialize(from: source, count: length)
     }
 }
-

@@ -10,4 +10,3 @@ extension Swift::UnsafeBufferPointer where Element: ~Copyable {
         unsafe self.init(start: start, count: length)
     }
 }
-

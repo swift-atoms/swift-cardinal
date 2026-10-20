@@ -35,4 +35,3 @@ public func >>= <RawValue: FixedWidthInteger>(
 ) {
     lhs = lhs >> rhs
 }
-

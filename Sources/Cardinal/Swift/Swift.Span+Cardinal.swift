@@ -54,4 +54,3 @@ extension Swift::Span where Element: ~Copyable {
         return self.extracting(droppingLast: length)
     }
 }
-

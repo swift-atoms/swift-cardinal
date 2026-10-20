@@ -42,4 +42,3 @@ extension Swift::OutputSpan {
         append(repeating: repeatedValue, count: length)
     }
 }
-

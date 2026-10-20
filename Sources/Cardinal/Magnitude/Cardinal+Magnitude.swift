@@ -18,8 +18,9 @@ extension Magnitude::Magnitude where Storage == Cardinal {
 
     @inlinable
     public static func + (lhs: Self, rhs: Self) -> Self {
-        do { return try lhs.add.exact(rhs) }
-        catch { preconditionFailure("Magnitude overflow in addition") }
+        do { return try lhs.add.exact(rhs) } catch {
+            preconditionFailure("Magnitude overflow in addition")
+        }
     }
 
     @inlinable
@@ -121,4 +122,3 @@ extension Property {
         base.map { $0.subtract.saturating(other.underlying) }
     }
 }
-

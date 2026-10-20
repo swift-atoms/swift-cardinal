@@ -17,8 +17,8 @@ extension Property::Property where Tag == Subtraction, Base == Cardinal {
 
     @inlinable
     public func exact(_ other: Base) throws(Base.Error) -> Base {
-        do { return Base(try Subtraction.exact(base.rawValue, other.rawValue)) }
-        catch { throw .underflow }
+        do { return Base(try Subtraction.exact(base.rawValue, other.rawValue)) } catch {
+            throw .underflow
+        }
     }
 }
-

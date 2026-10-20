@@ -10,4 +10,3 @@ extension Swift::BidirectionalCollection where Self: RangeReplaceableCollection 
         self.removeLast(length)
     }
 }
-
