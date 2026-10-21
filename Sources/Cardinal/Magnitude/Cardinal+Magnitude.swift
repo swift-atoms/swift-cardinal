@@ -13,7 +13,11 @@ extension Magnitude::Magnitude where Storage == Cardinal {
 
     @inlinable
     public init(_ cardinal: Cardinal) {
-        try! self.init(validating: cardinal)
+        do {
+            try self.init(validating: cardinal)
+        } catch {
+            preconditionFailure("A Cardinal is always a valid magnitude")
+        }
     }
 
     @inlinable

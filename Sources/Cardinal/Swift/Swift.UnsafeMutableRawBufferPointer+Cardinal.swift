@@ -3,8 +3,7 @@ public import Carrier
 extension Swift::UnsafeMutableRawBufferPointer {
 
     @inlinable
-    public init(start: UnsafeMutableRawPointer?, count: some Carrier::Carrier.`Protocol`<Cardinal>)
-    {
+    public init(start: UnsafeMutableRawPointer?, count: some Carrier::Carrier.`Protocol`<Cardinal>) {
         guard let length = try? Int(count.underlying) else {
             preconditionFailure("Count is not representable as Int")
         }

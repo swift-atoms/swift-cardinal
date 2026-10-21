@@ -93,8 +93,7 @@
                 preconditionFailure("The initializer must not run")
             }
         case "contiguous-capacity":
-            let _: ContiguousArray<Int> = unsafe ContiguousArray(unsafeUninitializedCapacity: count)
-            { _, _ in
+            let _: ContiguousArray<Int> = unsafe ContiguousArray(unsafeUninitializedCapacity: count) { _, _ in
                 preconditionFailure("The initializer must not run")
             }
         case "string": _ = String(repeating: "a", count: count)

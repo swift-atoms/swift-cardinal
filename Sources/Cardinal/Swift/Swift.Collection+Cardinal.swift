@@ -33,8 +33,7 @@ extension Swift::Collection {
     }
 
     @inlinable
-    public __consuming func dropLast(_ k: some Carrier::Carrier.`Protocol`<Cardinal>) -> SubSequence
-    {
+    public __consuming func dropLast(_ k: some Carrier::Carrier.`Protocol`<Cardinal>) -> SubSequence {
         guard let length = try? Int(k.underlying) else {
             preconditionFailure("Count is not representable as Int")
         }
