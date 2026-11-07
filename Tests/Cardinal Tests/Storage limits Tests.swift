@@ -2,84 +2,88 @@
     import Cardinal
     import Testing
 
-    @Suite(.serialized, .timeLimit(.minutes(1)))
-    struct `Storage counts must be representable before use` {
-        @Test(
-            arguments: [
-                "array-repeating", "contiguous-repeating", "array-capacity", "contiguous-capacity",
-                "string", "reserve", "remove-first", "remove-last", "prefix", "suffix",
-                "drop-first", "drop-last",
-                "set-reserve", "set-capacity", "dictionary-reserve", "dictionary-capacity",
-                "span-count", "span-first", "span-last", "span-drop-first", "span-drop-last",
-                "mutable-span-count", "mutable-span-first", "mutable-span-last",
-                "mutable-span-drop-first", "mutable-span-drop-last",
-                "raw-span", "mutable-raw-span", "buffer-count", "mutable-buffer-count",
-                "buffer-allocation",
-                "raw-buffer-count", "mutable-raw-buffer-count", "raw-allocation-bytes",
-                "raw-allocation-alignment",
-                "initialize", "move-initialize", "output-count", "output-remove", "output-append",
-            ],
-            [UInt(Int.max) + 1, UInt.max]
-        )
-        func `large counts fail at the exact conversion boundary`(
-            operation: String,
-            raw: UInt
-        ) async throws {
-            let result = try await #require(
-                processExitsWith: .failure,
-                observing: [\.standardErrorContent]
-            ) { [operation = operation as String, raw = raw as UInt] in
-                perform(operation, count: Cardinal(raw))
-            }
-            #if DEBUG
-                let diagnostic = String(decoding: result.standardErrorContent, as: UTF8.self)
-                #expect(diagnostic.contains("not representable as Int"), "\(diagnostic)")
-            #else
-                _ = result
-            #endif
-        }
+enum `Storage limits Tests` {}
 
-        @Test(
-            arguments: ["array-return", "array-throw", "contiguous-return", "contiguous-throw"],
-            [UInt(3), UInt(Int.max) + 1, UInt.max]
-        )
-        func `initialized counts are checked on return and throw`(
-            operation: String,
-            raw: UInt
-        ) async throws {
-            let result = try await #require(
-                processExitsWith: .failure,
-                observing: [\.standardErrorContent]
-            ) { [operation = operation as String, raw = raw as UInt] in
-                do {
-                    if operation.hasPrefix("array") {
-                        let _: [Int] = try unsafe Array(unsafeUninitializedCapacity: Cardinal(2)) {
-                            (_, initialized) throws(InitializerFailure) in
-                            initialized = Cardinal(raw)
-                            if operation.hasSuffix("throw") { throw .element }
-                        }
-                    } else {
-                        let _: ContiguousArray<Int> = try unsafe ContiguousArray(
-                            unsafeUninitializedCapacity: Cardinal(2)
-                        ) {
-                            (_, initialized) throws(InitializerFailure) in
-                            initialized = Cardinal(raw)
-                            if operation.hasSuffix("throw") { throw .element }
-                        }
-                    }
-                } catch {}
+extension `Storage limits Tests` {
+        @Suite(.serialized, .timeLimit(.minutes(1)))
+        struct `Storage counts must be representable before use` {
+            @Test(
+                arguments: [
+                    "array-repeating", "contiguous-repeating", "array-capacity", "contiguous-capacity",
+                    "string", "reserve", "remove-first", "remove-last", "prefix", "suffix",
+                    "drop-first", "drop-last",
+                    "set-reserve", "set-capacity", "dictionary-reserve", "dictionary-capacity",
+                    "span-count", "span-first", "span-last", "span-drop-first", "span-drop-last",
+                    "mutable-span-count", "mutable-span-first", "mutable-span-last",
+                    "mutable-span-drop-first", "mutable-span-drop-last",
+                    "raw-span", "mutable-raw-span", "buffer-count", "mutable-buffer-count",
+                    "buffer-allocation",
+                    "raw-buffer-count", "mutable-raw-buffer-count", "raw-allocation-bytes",
+                    "raw-allocation-alignment",
+                    "initialize", "move-initialize", "output-count", "output-remove", "output-append",
+                ],
+                [UInt(Int.max) + 1, UInt.max]
+            )
+            func `large counts fail at the exact conversion boundary`(
+                operation: String,
+                raw: UInt
+            ) async throws {
+                let result = try await #require(
+                    processExitsWith: .failure,
+                    observing: [\.standardErrorContent]
+                ) { [operation = operation as String, raw = raw as UInt] in
+                    perform(operation, count: Cardinal(raw))
+                }
+                #if DEBUG
+                    let diagnostic = String(decoding: result.standardErrorContent, as: UTF8.self)
+                    #expect(diagnostic.contains("not representable as Int"), "\(diagnostic)")
+                #else
+                    _ = result
+                #endif
             }
-            #if DEBUG
-                let diagnostic = String(decoding: result.standardErrorContent, as: UTF8.self)
-                let expected =
-                    raw > UInt(Int.max)
-                    ? "not representable as Int" : "Initialized count exceeds capacity"
-                #expect(diagnostic.contains(expected), "\(diagnostic)")
-            #else
-                _ = result
-            #endif
+
+            @Test(
+                arguments: ["array-return", "array-throw", "contiguous-return", "contiguous-throw"],
+                [UInt(3), UInt(Int.max) + 1, UInt.max]
+            )
+            func `initialized counts are checked on return and throw`(
+                operation: String,
+                raw: UInt
+            ) async throws {
+                let result = try await #require(
+                    processExitsWith: .failure,
+                    observing: [\.standardErrorContent]
+                ) { [operation = operation as String, raw = raw as UInt] in
+                    do {
+                        if operation.hasPrefix("array") {
+                            let _: [Int] = try unsafe Array(unsafeUninitializedCapacity: Cardinal(2)) {
+                                (_, initialized) throws(InitializerFailure) in
+                                initialized = Cardinal(raw)
+                                if operation.hasSuffix("throw") { throw .element }
+                            }
+                        } else {
+                            let _: ContiguousArray<Int> = try unsafe ContiguousArray(
+                                unsafeUninitializedCapacity: Cardinal(2)
+                            ) {
+                                (_, initialized) throws(InitializerFailure) in
+                                initialized = Cardinal(raw)
+                                if operation.hasSuffix("throw") { throw .element }
+                            }
+                        }
+                    } catch {}
+                }
+                #if DEBUG
+                    let diagnostic = String(decoding: result.standardErrorContent, as: UTF8.self)
+                    let expected =
+                        raw > UInt(Int.max)
+                        ? "not representable as Int" : "Initialized count exceeds capacity"
+                    #expect(diagnostic.contains(expected), "\(diagnostic)")
+                #else
+                    _ = result
+                #endif
+            }
         }
-    }
+}
 
     private enum InitializerFailure: Swift::Error { case element }
 

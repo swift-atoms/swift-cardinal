@@ -4,9 +4,13 @@
     import Cardinal
     import Carrier
 
-    @Suite struct `Cardinal span compatibility` {}
+enum `Span+Cardinal Tests` {}
 
-    extension `Cardinal span compatibility` {
+extension `Span+Cardinal Tests` {
+        @Suite struct `Cardinal span compatibility` {}
+}
+
+    extension `Span+Cardinal Tests`.`Cardinal span compatibility` {
         @Test
         func `Span typed-Cardinal init reads the underlying buffer`() {
             let values: [Int] = [10, 20, 30]
@@ -39,7 +43,7 @@
         }
     }
 
-    extension `Cardinal span compatibility` {
+    extension `Span+Cardinal Tests`.`Cardinal span compatibility` {
         @Test
         func `Span typed-Cardinal init with zero count is empty`() {
             let values: [Int] = [7]

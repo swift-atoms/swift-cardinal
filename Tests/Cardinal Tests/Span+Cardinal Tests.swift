@@ -3,14 +3,23 @@
 
     import Cardinal
 
-    @Suite
-    struct `Spans preserve typed Cardinal counts through construction` {
+enum `Span+Cardinal Tests` {}
+
+extension `Span+Cardinal Tests` {
+        @Suite
+        struct `Spans preserve typed Cardinal counts through construction` {
+        }
+}
+
+    extension `Span+Cardinal Tests`.`Spans preserve typed Cardinal counts through construction` {
         @Suite struct `Typed Cardinal counts select readable and mutable span extents` {}
+
         @Suite struct `Zero typed Cardinal counts construct empty spans` {}
+
         @Suite struct `No typed span construction integration cases are defined` {}
     }
 
-    extension `Spans preserve typed Cardinal counts through construction`
+    extension `Span+Cardinal Tests`.`Spans preserve typed Cardinal counts through construction`
         .`Typed Cardinal counts select readable and mutable span extents`
     {
         @Test
@@ -45,7 +54,7 @@
         }
     }
 
-    extension `Spans preserve typed Cardinal counts through construction`
+    extension `Span+Cardinal Tests`.`Spans preserve typed Cardinal counts through construction`
         .`Zero typed Cardinal counts construct empty spans`
     {
         @Test

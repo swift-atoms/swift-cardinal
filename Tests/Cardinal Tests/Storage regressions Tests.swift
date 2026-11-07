@@ -14,59 +14,63 @@
 
     private enum ElementFailure: Swift.Error { case element }
 
-    @Suite(.timeLimit(.minutes(1)))
-    struct `Count adapters preserve storage and ownership boundaries` {
-        @Test
-        func `reserve capacity cannot reinterpret a positive count`() async {
-            await #expect(processExitsWith: .failure) {
-                var collection = RecordingCollection()
-                collection.reserveCapacity(Cardinal(UInt.max))
-                precondition(collection.requestedCapacity == -1)
-            }
-        }
+enum `Storage regressions Tests` {}
 
-        @Test
-        func `throwing array initialization destroys the initialized prefix`() async {
-            await #expect(processExitsWith: .success) {
-                let deaths = Deaths()
-                func build() throws(ElementFailure) -> [Element] {
-                    try unsafe Array(unsafeUninitializedCapacity: Cardinal(2)) {
-                        (buffer, count) throws(ElementFailure) in
-                        unsafe buffer.baseAddress!.initialize(to: Element(deaths))
-                        count = Cardinal(1)
-                        throw .element
+extension `Storage regressions Tests` {
+        @Suite(.timeLimit(.minutes(1)))
+        struct `Count adapters preserve storage and ownership boundaries` {
+            @Test
+            func `reserve capacity cannot reinterpret a positive count`() async {
+                await #expect(processExitsWith: .failure) {
+                    var collection = RecordingCollection()
+                    collection.reserveCapacity(Cardinal(UInt.max))
+                    precondition(collection.requestedCapacity == -1)
+                }
+            }
+
+            @Test
+            func `throwing array initialization destroys the initialized prefix`() async {
+                await #expect(processExitsWith: .success) {
+                    let deaths = Deaths()
+                    func build() throws(ElementFailure) -> [Element] {
+                        try unsafe Array(unsafeUninitializedCapacity: Cardinal(2)) {
+                            (buffer, count) throws(ElementFailure) in
+                            unsafe buffer.baseAddress!.initialize(to: Element(deaths))
+                            count = Cardinal(1)
+                            throw .element
+                        }
+                    }
+                    do {
+                        _ = try build()
+                        preconditionFailure("The element initializer must throw")
+                    } catch {
+                        precondition(deaths.count == 1)
                     }
                 }
-                do {
-                    _ = try build()
-                    preconditionFailure("The element initializer must throw")
-                } catch {
-                    precondition(deaths.count == 1)
-                }
             }
-        }
 
-        @Test
-        func `throwing contiguous initialization destroys the initialized prefix`() async {
-            await #expect(processExitsWith: .success) {
-                let deaths = Deaths()
-                func build() throws(ElementFailure) -> ContiguousArray<Element> {
-                    try unsafe ContiguousArray(unsafeUninitializedCapacity: Cardinal(2)) {
-                        (buffer, count) throws(ElementFailure) in
-                        unsafe buffer.baseAddress!.initialize(to: Element(deaths))
-                        count = Cardinal(1)
-                        throw .element
+            @Test
+            func `throwing contiguous initialization destroys the initialized prefix`() async {
+                await #expect(processExitsWith: .success) {
+                    let deaths = Deaths()
+                    func build() throws(ElementFailure) -> ContiguousArray<Element> {
+                        try unsafe ContiguousArray(unsafeUninitializedCapacity: Cardinal(2)) {
+                            (buffer, count) throws(ElementFailure) in
+                            unsafe buffer.baseAddress!.initialize(to: Element(deaths))
+                            count = Cardinal(1)
+                            throw .element
+                        }
+                    }
+                    do {
+                        _ = try build()
+                        preconditionFailure("The element initializer must throw")
+                    } catch {
+                        precondition(deaths.count == 1)
                     }
                 }
-                do {
-                    _ = try build()
-                    preconditionFailure("The element initializer must throw")
-                } catch {
-                    precondition(deaths.count == 1)
-                }
             }
         }
-    }
+}
 
     private struct RecordingCollection: RangeReplaceableCollection {
         var values: [Int] = []
