@@ -12,7 +12,7 @@
         deinit { deaths.count += 1 }
     }
 
-    private enum ElementFailure: Swift::Error { case element }
+    private enum ElementFailure: Swift.Error { case element }
 
     @Suite(.timeLimit(.minutes(1)))
     struct `Count adapters preserve storage and ownership boundaries` {
@@ -79,7 +79,7 @@
         func index(after i: Int) -> Int { i + 1 }
         subscript(i: Int) -> Int { values[i] }
         mutating func reserveCapacity(_ capacity: Int) { requestedCapacity = capacity }
-        mutating func replaceSubrange<C: Collection>(
+        mutating func replaceSubrange<C: Swift.Collection>(
             _ subrange: Range<Int>,
             with newElements: C
         ) where C.Element == Int {
