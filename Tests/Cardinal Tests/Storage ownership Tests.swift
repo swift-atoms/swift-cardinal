@@ -23,9 +23,9 @@
         deinit { deaths.ids.append(id) }
     }
 
-enum `Storage ownership Tests` {}
+    enum `Storage ownership Tests` {}
 
-extension `Storage ownership Tests` {
+    extension `Storage ownership Tests` {
         @Suite struct `Pointer counts preserve ownership` {
             @Test
             func `copy initialization retains source objects until both regions are destroyed`() {
@@ -94,6 +94,6 @@ extension `Storage ownership Tests` {
                 #expect(deaths.ids.sorted() == [1, 2])
             }
         }
-}
+    }
 
 #endif

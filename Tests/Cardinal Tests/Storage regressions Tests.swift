@@ -14,9 +14,9 @@
 
     private enum ElementFailure: Swift.Error { case element }
 
-enum `Storage regressions Tests` {}
+    enum `Storage regressions Tests` {}
 
-extension `Storage regressions Tests` {
+    extension `Storage regressions Tests` {
         @Suite(.timeLimit(.minutes(1)))
         struct `Count adapters preserve storage and ownership boundaries` {
             @Test
@@ -70,7 +70,7 @@ extension `Storage regressions Tests` {
                 }
             }
         }
-}
+    }
 
     private struct RecordingCollection: RangeReplaceableCollection {
         var values: [Int] = []

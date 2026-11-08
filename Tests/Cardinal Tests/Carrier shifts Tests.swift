@@ -22,9 +22,9 @@
         case left, right, assignLeft, assignRight
     }
 
-enum `Carrier shifts Tests` {}
+    enum `Carrier shifts Tests` {}
 
-extension `Carrier shifts Tests` {
+    extension `Carrier shifts Tests` {
         @Suite(.serialized, .timeLimit(.minutes(1)))
         struct `Cardinal shifts preserve integer width boundaries` {
             @Test(arguments: Array(UInt(0)..<8))
@@ -83,7 +83,7 @@ extension `Carrier shifts Tests` {
                 }
             }
         }
-}
+    }
 
     private func verify<Value: FixedWidthInteger>(_ value: Value, count: Shift) {
         let amount = count.underlying.rawValue

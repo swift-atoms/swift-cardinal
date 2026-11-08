@@ -4,11 +4,11 @@
     import Cardinal
     import Carrier
 
-enum `Span+Cardinal Tests` {}
+    enum `Span+Cardinal Tests` {}
 
-extension `Span+Cardinal Tests` {
+    extension `Span+Cardinal Tests` {
         @Suite struct `Cardinal span compatibility` {}
-}
+    }
 
     extension `Span+Cardinal Tests`.`Cardinal span compatibility` {
         @Test

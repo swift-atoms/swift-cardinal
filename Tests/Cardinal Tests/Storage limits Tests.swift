@@ -2,9 +2,9 @@
     import Cardinal
     import Testing
 
-enum `Storage limits Tests` {}
+    enum `Storage limits Tests` {}
 
-extension `Storage limits Tests` {
+    extension `Storage limits Tests` {
         @Suite(.serialized, .timeLimit(.minutes(1)))
         struct `Storage counts must be representable before use` {
             @Test(
@@ -83,7 +83,7 @@ extension `Storage limits Tests` {
                 #endif
             }
         }
-}
+    }
 
     private enum InitializerFailure: Swift::Error { case element }
 

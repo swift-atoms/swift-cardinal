@@ -15,9 +15,9 @@
         typealias Domain = Scope
     }
 
-enum `Storage values Tests` {}
+    enum `Storage values Tests` {}
 
-extension `Storage values Tests` {
+    extension `Storage values Tests` {
         @Suite struct `Representable storage counts retain existing behavior` {
             @Test(arguments: [0 as UInt, 1, 3])
             func `repetition accepts bare tagged and custom counts`(raw: UInt) {
@@ -206,6 +206,6 @@ extension `Storage values Tests` {
                 #expect(try maximum.subtract.exact(.one).rawValue == UInt.max - 1)
             }
         }
-}
+    }
 
 #endif

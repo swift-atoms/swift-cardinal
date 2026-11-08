@@ -7,9 +7,9 @@
     import Property
     import Testing
 
-enum `Cardinal Property Tests` {}
+    enum `Cardinal Property Tests` {}
 
-extension `Cardinal Property Tests` {
+    extension `Cardinal Property Tests` {
         @Suite
         struct `Cardinal properties use canonical arithmetic operations` {
             @Test
@@ -70,6 +70,6 @@ extension `Cardinal Property Tests` {
                 #expect(try canonical.exact(Cardinal(3)) == Cardinal(2))
             }
         }
-}
+    }
 
 #endif

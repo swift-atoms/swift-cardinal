@@ -36,9 +36,9 @@
 
     private enum InitializerFailure: Swift::Error { case element }
 
-enum `Carrier operations Tests` {}
+    enum `Carrier operations Tests` {}
 
-extension `Carrier operations Tests` {
+    extension `Carrier operations Tests` {
         @Suite struct `Cardinal operations preserve custom carriers` {
             @Test
             func `custom carriers preserve counts and arithmetic domains`() throws(Cardinal.Error) {
@@ -155,6 +155,6 @@ extension `Carrier operations Tests` {
                 #expect(deaths.count == 1)
             }
         }
-}
+    }
 
 #endif

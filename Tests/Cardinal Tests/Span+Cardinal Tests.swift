@@ -3,13 +3,13 @@
 
     import Cardinal
 
-enum `Span+Cardinal Tests` {}
+    enum `Span+Cardinal Tests` {}
 
-extension `Span+Cardinal Tests` {
+    extension `Span+Cardinal Tests` {
         @Suite
         struct `Spans preserve typed Cardinal counts through construction` {
         }
-}
+    }
 
     extension `Span+Cardinal Tests`.`Spans preserve typed Cardinal counts through construction` {
         @Suite struct `Typed Cardinal counts select readable and mutable span extents` {}
