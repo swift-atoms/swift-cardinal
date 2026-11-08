@@ -81,3 +81,54 @@ extension Cardinal {
         self.init(UInt(value))
     }
 }
+
+#if Algebra
+    public import Algebra
+
+    extension Cardinal {
+
+        @inlinable
+        public static var monoid: Algebra.Monoid<Self>.Commutative {
+            .init(
+                monoid: .init(
+                    identity: Cardinal(UInt.zero),
+                    combining: { $0 + $1 }
+                )
+            )
+        }
+    }
+#endif
+
+#if SYNCHRONIZATION_AVAILABLE
+    import Synchronization
+#endif
+
+extension Cardinal: Swift::CustomStringConvertible {
+
+    public var description: String { rawValue.description }
+}
+
+#if SYNCHRONIZATION_AVAILABLE
+    import Synchronization
+#endif
+
+extension Cardinal: Swift::ExpressibleByIntegerLiteral {
+
+    @_disfavoredOverload
+    @inlinable
+    public init(integerLiteral value: UInt) {
+        self.init(value)
+    }
+}
+
+#if SYNCHRONIZATION_AVAILABLE
+    import Synchronization
+#endif
+
+extension Cardinal: Swift::Hashable, Swift::Comparable {
+
+    @inlinable
+    public borrowing func hash(into hasher: inout Hasher) {
+        hasher.combine(rawValue)
+    }
+}
