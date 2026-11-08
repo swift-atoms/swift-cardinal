@@ -67,7 +67,7 @@ extension `Storage values Tests` {
                     initialized in
                     #expect(initialized.underlying == .zero)
                     #expect(buffer.count == Int(raw))
-                    for i in 0..<Int(raw) {
+                    (0..<Int(raw)).forEach { i in
                         unsafe buffer.baseAddress!.advanced(by: i).initialize(to: i + 10)
                     }
                     initialized = Count(Cardinal(raw))
