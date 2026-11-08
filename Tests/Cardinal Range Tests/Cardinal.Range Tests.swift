@@ -1,7 +1,7 @@
 import Cardinal
 import Testing
 
-@Test func inclusiveAndExclusiveLimits() {
+@Test func `inclusive and exclusive limits`() {
     let closed: ClosedRange<Cardinal> = 2...5
     let open: Range<Cardinal> = 2..<5
     #expect(closed.contains(5))
@@ -10,13 +10,13 @@ import Testing
     #expect(!closed.permitsAnother(after: 5))
     #expect(!open.permitsAnother(after: 4))
 }
-@Test func unboundedRangesDoNotUseAFiniteMaximum() {
+@Test func `unbounded ranges do not use a finite maximum`() {
     let range: PartialRangeFrom<Cardinal> = 2...
     #expect(range.maximum == nil)
     #expect(range.contains(2))
     #expect(range.permitsAnother(after: .max))
 }
-@Test func emptyAndZeroRangesAreDistinct() {
+@Test func `empty and zero ranges are distinct`() {
     let empty: PartialRangeUpTo<Cardinal> = ..<0
     let zero: PartialRangeThrough<Cardinal> = ...0
     #expect(!empty.contains(0))
