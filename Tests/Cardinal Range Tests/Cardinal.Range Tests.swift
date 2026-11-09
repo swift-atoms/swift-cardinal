@@ -12,7 +12,7 @@ import Testing
 }
 @Test func `unbounded ranges do not use a finite maximum`() {
     let range: PartialRangeFrom<Cardinal> = 2...
-    #expect(range.maximum == nil)
+    #expect(range.bounds == .unbounded(minimum: 2))
     #expect(range.contains(2))
     #expect(range.permitsAnother(after: .max))
 }
@@ -22,4 +22,13 @@ import Testing
     #expect(!empty.contains(0))
     #expect(zero.contains(0))
     #expect(!zero.permitsAnother(after: 0))
+    #expect(empty.bounds == .empty)
+    #expect(zero.bounds == .bounded(minimum: 0, maximum: 0))
+}
+@Test func `an empty half-open range reports no bounds and permits nothing`() {
+    let empty: Range<Cardinal> = 5..<5
+    #expect(empty.bounds == .empty)
+    #expect(!empty.permitsAnother(after: 3))
+    let open: Range<Cardinal> = 2..<5
+    #expect(open.bounds == .bounded(minimum: 2, maximum: 4))
 }

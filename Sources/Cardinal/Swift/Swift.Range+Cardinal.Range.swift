@@ -1,6 +1,5 @@
 extension Swift.Range: Cardinal.Range where Bound == Cardinal {
-    public var minimum: Cardinal { lowerBound }
-    public var maximum: Cardinal? {
-        upperBound == .zero ? .zero : Cardinal(upperBound.rawValue - 1)
+    public var bounds: Cardinal.Bounds {
+        isEmpty ? .empty : .bounded(minimum: lowerBound, maximum: Cardinal(upperBound.rawValue - 1))
     }
 }
