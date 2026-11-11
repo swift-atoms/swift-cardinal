@@ -11,6 +11,11 @@ extension Swift::Int {
     }
 
     @inlinable
+    public init?<Tag: ~Copyable & ~Escapable>(exactly count: Tagged::Tagged<Tag, Cardinal>) {
+        self.init(exactly: count.underlying)
+    }
+
+    @inlinable
     public init<Tag: ~Copyable & ~Escapable>(bitPattern count: Tagged::Tagged<Tag, Cardinal>) {
         self = Int(bitPattern: count.underlying)
     }
@@ -30,6 +35,12 @@ extension Swift::Int {
         guard cardinal.rawValue <= Swift::UInt(Swift::Int.max) else {
             throw .overflow
         }
+        self = Int(cardinal.rawValue)
+    }
+
+    @inlinable
+    public init?(exactly cardinal: Cardinal) {
+        guard cardinal.rawValue <= Swift::UInt(Swift::Int.max) else { return nil }
         self = Int(cardinal.rawValue)
     }
 
